@@ -165,6 +165,7 @@ dist
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
+.idea
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -664,6 +665,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 ### VisualStudio Patch ###
-# Additional files built by Visual Studio
+.vscode
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,webstorm,node

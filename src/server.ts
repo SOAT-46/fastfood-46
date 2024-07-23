@@ -1,16 +1,40 @@
-import dotenv from 'dotenv';
 import Fastify from 'fastify';
+import cors from '@fastify/cors';
+import sensible from '@fastify/sensible';
+import {fastifyAwilixPlugin} from '@fastify/awilix';
+import {createDIContainer} from './container';
+import {productRoutes} from './core/products/presentation/routes/products';
 
-dotenv.config();
+import swagger from '@fastify/swagger';
+import swaggerUi from '@fastify/swagger-ui';
 
-const server = Fastify({logger: true});
+const buildServer = () => {
+  const server = Fastify({logger: true});
 
-const port = Number(process.env.APP_PORT) || 3000;
-const host = process.env.APP_HOST || 'localhost';
-server.listen({port, host}, (err, address) => {
-    if (err) {
-        console.error(err);
-        process.exit(1);
-    }
-    console.log(`Server listening at ${address}`);
-});
+  server.register(cors);
+  server.register(sensible);
+
+  server.register(swagger, {
+    openapi: {
+      info: {
+        title: 'Lanchonete',
+        description: 'FIAP Lanchonete',
+        version: '0.0.1'
+      },
+      servers: [
+        {
+          url: 'http://localhost:3000'
+        }
+      ]
+    },
+    hideUntagged: true
+  })
+  server.register(swaggerUi)
+
+  createDIContainer(server);
+  server.register(productRoutes, {prefix: '/v1/products'});
+
+  return server;
+}
+
+export {buildServer};
