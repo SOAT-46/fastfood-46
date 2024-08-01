@@ -16,7 +16,7 @@ datasource db {
 model products {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(255)
-  description String?  @db.VarChar(255)
+  description String   @db.VarChar(255)
   price       Float
   created_at  DateTime @default(now())
 }

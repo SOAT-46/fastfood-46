@@ -1,7 +1,7 @@
-import {Product} from '../entities/product';
-import {CreateProductUseCase, Listeners} from '../usecases/create_product_use_case';
-
 import {FastifyRequest, FastifyReply} from 'fastify';
+
+import {Product} from '../../domain/models/product';
+import {CreateProductUseCase, Listeners} from '../../application/usecases/create_product_use_case';
 
 const toDomain = (request: FastifyRequest): Product => {
   const { name, description, price } = request.body as {

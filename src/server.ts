@@ -3,7 +3,8 @@ import cors from '@fastify/cors';
 import sensible from '@fastify/sensible';
 import {fastifyAwilixPlugin} from '@fastify/awilix';
 import {createDIContainer} from './container';
-import {productRoutes} from './core/products/presentation/routes/products';
+import {productRoutes} from './modules/products/adapters/http/routes/products';
+
 
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
@@ -21,15 +22,22 @@ const buildServer = () => {
         description: 'FIAP Lanchonete',
         version: '0.0.1'
       },
-      servers: [
-        {
-          url: 'http://localhost:3000'
-        }
-      ]
+      servers: [{url: 'http://localhost:3000'}],
     },
-    hideUntagged: true
-  })
-  server.register(swaggerUi)
+    hideUntagged: true,
+  });
+  server.register(swaggerUi, {
+    routePrefix: '/documentation',
+    uiConfig: {
+      docExpansion: 'list',
+      deepLinking: false
+    },
+    staticCSP: true,
+    transformSpecification: (swaggerObject, request, reply) => {
+      return swaggerObject;
+    },
+    transformSpecificationClone: true
+  });
 
   createDIContainer(server);
   server.register(productRoutes, {prefix: '/v1/products'});

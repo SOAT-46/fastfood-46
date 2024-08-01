@@ -1,5 +1,5 @@
-import {Product} from "../entities/product";
-import {PrismaClient} from "@prisma/client";
+import {Product} from "../../domain/models/product";
+import {ProductsRepository} from "../../domain/repositories/products_repository";
 
 export interface Listeners {
   onSuccess: (product: Product) => void;
@@ -8,19 +8,19 @@ export interface Listeners {
 }
 
 export class CreateProductUseCase {
-  public constructor(private readonly prisma: PrismaClient) {}
+  public constructor(private readonly productsRepository: ProductsRepository) {}
 
   public async execute(product: Product, listeners: Listeners): Promise<void> {
     if(!product.isValid()) {
       return listeners.onInvalid(product);
     }
 
-    const exists = await this.prisma.products.findFirst({where: {name: product.name}});
+    const exists = await this.productsRepository.GetByName(product.name);
     if (exists) {
       return listeners.onExists(product);
     }
 
-    await this.prisma.products.create({data: product});
-    return listeners.onSuccess(product);
+    const created = await this.productsRepository.Save(product);
+    return listeners.onSuccess(created);
   }
 }

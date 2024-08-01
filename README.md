@@ -7,7 +7,8 @@ When you're ready, start your application by running:
 docker compose up --build
 ```
 
-Your application will be available at http://localhost:3000.
+Your application will be accessible at http://localhost:3000, and the Swagger
+documentation can be found at http://localhost:3000/documentation.
 
 ### Deploying your application to the cloud
 
