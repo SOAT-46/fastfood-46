@@ -1,5 +1,5 @@
-import { FastifySchema } from "fastify";
-import { productProperties } from "./types";
+import { FastifySchema } from 'fastify';
+import { productProperties } from './types';
 
 export const createProductSchema: FastifySchema = {
   summary: 'Creates a new product',

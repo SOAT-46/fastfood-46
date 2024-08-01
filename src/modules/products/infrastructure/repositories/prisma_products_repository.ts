@@ -1,8 +1,8 @@
-import {PrismaClient} from "@prisma/client";
+import {PrismaClient} from '@prisma/client';
 
 import {toDomain} from './mappers/product_mapper';
-import {Product} from "../../domain/models/product";
-import {ProductsRepository} from "../../domain/repositories/products_repository";
+import {Product} from '../../domain/models/product';
+import {ProductsRepository} from '../../domain/repositories/products_repository';
 
 export class PrismaProductsRepository implements ProductsRepository {
   public constructor(private readonly prisma: PrismaClient) {}

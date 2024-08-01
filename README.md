@@ -1,5 +1,17 @@
 ## Lanchonete
 
+### Setting up Node Version
+
+To ensure you are using the correct Node.js version specified in the `.nvmrc` file, run the following command:
+
+```shell
+nvm use
+```
+
+If you don't have nvm (Node Version Manager) installed, follow the instructions here to install it.
+
+For more details about nvm, you can visit their [GitHub repository](https://github.com/nvm-sh/nvm#installing-and-updating).
+
 ### Building and running your application
 
 When you're ready, start your application by running:

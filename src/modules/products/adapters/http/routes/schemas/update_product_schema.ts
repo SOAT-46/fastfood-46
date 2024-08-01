@@ -1,5 +1,5 @@
-import { FastifySchema } from "fastify";
-import { productProperties } from "./types";
+import { FastifySchema } from 'fastify';
+import { productProperties } from './types';
 
 export const updateProductSchema: FastifySchema = {
   summary: 'Updates a product by the target id',

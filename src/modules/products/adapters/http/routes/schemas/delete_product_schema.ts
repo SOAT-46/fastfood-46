@@ -1,4 +1,4 @@
-import { FastifySchema } from "fastify"
+import { FastifySchema } from 'fastify'
 
 export const deleteProductSchema: FastifySchema = {
   summary: 'Deletes a product by the target id',

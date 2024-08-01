@@ -1,6 +1,7 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import sensible from '@fastify/sensible';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {fastifyAwilixPlugin} from '@fastify/awilix';
 import {createDIContainer} from './container';
 import {productRoutes} from './modules/products/adapters/http/routes/products';

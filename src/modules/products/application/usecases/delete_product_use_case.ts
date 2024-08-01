@@ -1,4 +1,4 @@
-import {ProductsRepository} from "../../domain/repositories/products_repository";
+import {ProductsRepository} from '../../domain/repositories/products_repository';
 
 export interface Listeners {
   onSuccess: () => void;

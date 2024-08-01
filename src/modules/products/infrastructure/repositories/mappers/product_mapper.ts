@@ -1,4 +1,4 @@
-import {Product} from "../../../domain/models/product";
+import {Product} from '../../../domain/models/product';
 
 export const toDomain = ({id, name, description, price}: {
   id: number;
