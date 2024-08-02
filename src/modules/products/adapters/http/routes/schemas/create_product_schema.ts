@@ -10,9 +10,10 @@ export const createProductSchema: FastifySchema = {
     properties: {
       name: { type: 'string' },
       description: { type: 'string' },
-      price: { type: 'number' }
+      price: { type: 'number' },
+      categoryId: { type: 'number' },
     },
-    required: ['name', 'description', 'price'],
+    required: ['name', 'description', 'price', 'categoryId'],
   },
   response: {
     201: {

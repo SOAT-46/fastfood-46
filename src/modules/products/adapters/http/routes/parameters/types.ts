@@ -1,4 +1,4 @@
-interface ProductParams {
+interface Params {
   id: number;
 }
 
@@ -8,4 +8,4 @@ interface UpdateProductBody {
   price: number;
 }
 
-export {ProductParams, UpdateProductBody}
+export {Params, UpdateProductBody}

@@ -8,7 +8,7 @@ export const updateProductSchema: FastifySchema = {
   params: {
     type: 'object',
     properties: {
-      id: { type: 'string' }
+      id: { type: 'number' }
     },
     required: ['id']
   },

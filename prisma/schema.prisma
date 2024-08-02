@@ -14,9 +14,17 @@ datasource db {
 }
 
 model products {
-  id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar(255)
-  description String   @db.VarChar(255)
+  id          Int         @id @default(autoincrement())
+  name        String      @db.VarChar(255)
+  description String      @db.VarChar(255)
   price       Float
-  created_at  DateTime @default(now())
+  created_at  DateTime    @default(now())
+  categoryId  Int // Foreign key (required)
+  category    categories? @relation(fields: [categoryId], references: [id])
+}
+
+model categories {
+  id       Int        @id @default(autoincrement())
+  name     String     @db.VarChar(255)
+  products products[]
 }
