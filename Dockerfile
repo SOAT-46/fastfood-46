@@ -9,6 +9,4 @@ RUN yarn install
 
 COPY . /home/app
 
-RUN yarn generate
-
 CMD ["yarn", "dev"]

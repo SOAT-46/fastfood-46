@@ -15,9 +15,9 @@ export class CreateProductUseCase {
       return listeners.onInvalid(product);
     }
 
-    const exists = await this.productsRepository.GetByName(product.name);
-    if (exists) {
-      return listeners.onExists(product);
+    const existentProduct = await this.productsRepository.GetByName(product.name);
+    if (existentProduct) {
+      return listeners.onExists(existentProduct);
     }
 
     const created = await this.productsRepository.Save(product);

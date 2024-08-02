@@ -5,6 +5,8 @@ services:
       context: .
     env_file:
       - .env
+    environment:
+      POSTGRES_HOST: db
     ports:
       - "${APP_PORT}:${APP_PORT}"
     networks:

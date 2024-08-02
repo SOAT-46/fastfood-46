@@ -1,3 +1,4 @@
+import {execSync} from 'child_process';
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import sensible from '@fastify/sensible';
@@ -6,9 +7,18 @@ import {fastifyAwilixPlugin} from '@fastify/awilix';
 import {createDIContainer} from './container';
 import {productRoutes} from './modules/products/adapters/http/routes/products';
 
-
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
+
+const runGenerate = () => {
+  try {
+    execSync('npm run generate', { stdio: 'inherit' });
+    console.log('Prisma generate completed successfully.');
+  } catch (error) {
+    console.error('Error running prisma generate:', error);
+    process.exit(1);
+  }
+}
 
 const buildServer = () => {
   const server = Fastify({logger: true});
@@ -46,4 +56,4 @@ const buildServer = () => {
   return server;
 }
 
-export {buildServer};
+export {buildServer, runGenerate};
