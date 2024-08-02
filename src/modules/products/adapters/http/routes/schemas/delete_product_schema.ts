@@ -1,4 +1,5 @@
 import { FastifySchema } from 'fastify'
+import {validationProperties} from "./types";
 
 export const deleteProductSchema: FastifySchema = {
   summary: 'Deletes a product by the target id',
@@ -12,15 +13,14 @@ export const deleteProductSchema: FastifySchema = {
     required: ['id']
   },
   response: {
-    200: {
+    204: {
       description: 'Product was deleted',
-      type: 'object',
-      properties: {},
+      type: 'object'
     },
-    400: {
-      description: 'Validation error',
+    404: {
+      description: 'The product was not found',
       type: 'object',
-      properties: {}
+      properties: validationProperties
     }
   }
 };

@@ -1,5 +1,5 @@
 import { FastifySchema } from 'fastify';
-import { productProperties } from './types';
+import {productProperties, validationProperties} from './types';
 
 export const createProductSchema: FastifySchema = {
   summary: 'Creates a new product',
@@ -27,9 +27,9 @@ export const createProductSchema: FastifySchema = {
       properties: productProperties,
     },
     400: {
-      description: 'Validation error',
+      description: 'Validation error: One or more fields are missing or invalid. Ensure all required fields are provided and conform to the expected data types.',
       type: 'object',
-      properties: {}
+      properties: validationProperties
     }
   }
 };

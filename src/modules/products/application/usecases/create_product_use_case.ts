@@ -4,8 +4,8 @@ import {CategoriesRepository} from "../../../categories/domain/repositories/cate
 
 export interface Listeners {
   onSuccess: (product: Product) => void;
-  onInvalid: (product: Product) => void;
   onExists: (product: Product) => void;
+  onInvalid: () => void;
 }
 
 export class CreateProductUseCase {
@@ -15,7 +15,7 @@ export class CreateProductUseCase {
 
   public async execute(product: Product, listeners: Listeners): Promise<void> {
     if(!product.isValid()) {
-      return listeners.onInvalid(product);
+      return listeners.onInvalid();
     }
 
     const existentProduct = await this.productsRepository.GetByName(product.name);
@@ -25,7 +25,7 @@ export class CreateProductUseCase {
 
     const category = await this.categoriesRepository.GetById(product.categoryId);
     if (!category) {
-      return listeners.onInvalid(product);
+      return listeners.onInvalid();
     }
 
     const created = await this.productsRepository.Save(product);

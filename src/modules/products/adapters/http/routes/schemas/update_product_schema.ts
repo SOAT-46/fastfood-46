@@ -1,5 +1,5 @@
 import { FastifySchema } from 'fastify';
-import { productProperties } from './types';
+import {productProperties, validationProperties} from './types';
 
 export const updateProductSchema: FastifySchema = {
   summary: 'Updates a product by the target id',
@@ -14,7 +14,11 @@ export const updateProductSchema: FastifySchema = {
   },
   body: {
     type: 'object',
-    properties: productProperties,
+    properties: {
+      name: { type: 'string' },
+      description: { type: 'string' },
+      price: { type: 'number' },
+    },
   },
   response: {
     200: {
@@ -22,10 +26,10 @@ export const updateProductSchema: FastifySchema = {
       type: 'object',
       properties: productProperties,
     },
-    400: {
-      description: 'Validation error',
+    404: {
+      description: 'Product not found',
       type: 'object',
-      properties: {}
+      properties: validationProperties
     }
   }
 };

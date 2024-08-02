@@ -16,10 +16,10 @@ export class DeleteProductController {
   }
 
   private onSuccess(response: FastifyReply) {
-    response.code(200);
+    response.code(204);
   }
 
   private onNotFound(response: FastifyReply) {
-    response.code(400);
+    response.notFound("The product does not exist");
   }
 }

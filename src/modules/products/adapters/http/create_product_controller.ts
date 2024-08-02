@@ -16,7 +16,7 @@ export class CreateProductController {
     const listeners: Listeners = {
       onSuccess: (product) => this.onSuccess(product, response),
       onExists: (product) => this.onExists(product, response),
-      onInvalid: (product) => this.onInvalid(product, response),
+      onInvalid: () => this.onInvalid(response),
     };
     return this.createProductUseCase.execute(toDomain(request), listeners);
   }
@@ -29,7 +29,7 @@ export class CreateProductController {
     response.code(200).send(product);
   }
 
-  private onInvalid(product: Product, response: FastifyReply) {
-    response.code(400).send(product);
+  private onInvalid(response: FastifyReply) {
+    response.badRequest("The product is invalid");
   }
 }

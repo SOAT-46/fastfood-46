@@ -48,8 +48,7 @@ export const getProductByCategorySchema: FastifySchema = {
     },
     204: {
       description: 'There is no product with this category to show',
-      type: 'object',
-      properties: {},
+      type: 'object'
     },
   }
 };

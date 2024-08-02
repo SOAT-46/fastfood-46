@@ -4,3 +4,9 @@ export const productProperties = {
   description: { type: 'string' },
   price: { type: 'number' },
 };
+
+export const validationProperties = {
+  statusCode: { type: 'number' },
+  error: { type: 'string' },
+  message: { type: 'string' }
+}

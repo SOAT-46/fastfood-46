@@ -27,6 +27,6 @@ export class UpdateProductController {
   }
 
   private onError(id: number | undefined, response: FastifyReply) {
-    response.code(400).send(id);
+    response.notFound(`The product ${id} does not exist`);
   }
 }
