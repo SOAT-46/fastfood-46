@@ -3,10 +3,10 @@ services:
     container_name: api
     build:
       context: .
-    env_file:
-      - .env
     environment:
       POSTGRES_HOST: db
+    env_file:
+      - .env
     ports:
       - "${APP_PORT}:${APP_PORT}"
     networks:

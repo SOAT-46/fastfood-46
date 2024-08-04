@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import {buildServer, runGenerate} from './server';
+import {buildServer} from './server';
 
 const main = async () => {
     dotenv.config();
@@ -15,7 +15,6 @@ const main = async () => {
     }
     console.log(`Server listening at ${address}`);
     server.swagger();
-    runGenerate();
   });
 }
 

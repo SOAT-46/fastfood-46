@@ -9,6 +9,7 @@
     "lint": "eslint --ext .js,.ts .",
     "migrate": "prisma migrate dev --name init",
     "generate": "prisma generate",
+    "deploy": "prisma migrate",
     "build": "tsc",
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts rs"

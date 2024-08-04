@@ -4,6 +4,7 @@ import {toDomain} from './mappers/product_mapper';
 import {Product} from '../../domain/models/product';
 import {ProductsRepository} from '../../domain/repositories/products_repository';
 import {PaginatedResponse, Meta} from '../../../shared/paginated_response';
+import {PrismaProduct} from './types';
 
 export class PrismaProductsRepository implements ProductsRepository {
   public constructor(private readonly prisma: PrismaClient) {}
@@ -26,7 +27,7 @@ export class PrismaProductsRepository implements ProductsRepository {
     });
     const totalPages = Math.ceil(totalCount / limit);
 
-    const products = await this.prisma.products.findMany({
+    const products: PrismaProduct[] = await this.prisma.products.findMany({
       where: { categoryId: id },
       skip: skip,
       take: limit

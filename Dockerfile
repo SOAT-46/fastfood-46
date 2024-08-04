@@ -9,4 +9,6 @@ RUN yarn install
 
 COPY . /home/app
 
-CMD ["yarn", "dev"]
+RUN npx prisma generate
+
+CMD ["sh", "-c", "npx prisma migrate deploy && yarn dev"]
