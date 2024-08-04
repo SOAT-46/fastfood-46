@@ -1,4 +1,4 @@
-## Lanchonete
+## Fastfood-46
 
 ### Setting up Node Version
 
@@ -39,7 +39,7 @@ documentation can be found at http://localhost:3000/documentation.
 First, build your image, e.g.:
 
 ```shell
-docker build -t lanchonete .
+docker build -t fastfood46 .
 ```
 
 If your cloud uses a different CPU architecture than your development
@@ -47,10 +47,10 @@ machine (e.g., you are on a Mac M1 and your cloud provider is amd64),
 you'll want to build the image for that platform, e.g.:
 
 ```shell
-docker build --platform=linux/amd64 -t lanchonete .
+docker build --platform=linux/amd64 -t fastfood46 .
 ```
 
-Then, push it to your registry, e.g. `docker push myregistry.com/lanchonete`.
+Then, push it to your registry, e.g. `docker push myregistry.com/fastfood46`.
 
 Consult Docker's [getting started](https://docs.docker.com/go/get-started-sharing/)
 docs for more detail on building and pushing.
