@@ -30,6 +30,10 @@
 **/values.dev.yaml
 **/build
 **/dist
+**/.nvmrc
+**/.env.example
+**/.editorconfig
+**/.eslint*
 LICENSE
 README.md
 **/.idea

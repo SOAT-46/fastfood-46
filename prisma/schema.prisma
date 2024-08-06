@@ -18,9 +18,9 @@ model products {
   name        String      @db.VarChar(255)
   description String      @db.VarChar(255)
   price       Float
-  created_at  DateTime    @default(now())
-  categoryId  Int // Foreign key (required)
-  category    categories? @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime    @default(now()) @map("created_at")
+  categoryId  Int         @map("category_id") // Foreign key (required)
+  category    categories? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
 
 model categories {
