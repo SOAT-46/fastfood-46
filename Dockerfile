@@ -1,14 +1,29 @@
-FROM node:22.5-alpine3.20
+ARG NODE_VERSION=22.5.1
+
+FROM node:${NODE_VERSION} AS build
+
+COPY package.json yarn.lock ./
+COPY tsconfig.json ./
+COPY prisma ./prisma
+COPY src ./src
+
+RUN yarn install --frozen-lockfile
+
+RUN yarn generate
+
+RUN yarn build
+
+FROM node:${NODE_VERSION}-alpine3.20
 
 WORKDIR /home/app
 
-COPY package.json /home/app
-COPY yarn.lock /home/app
+COPY package.json yarn.lock ./
 
-RUN yarn install
+RUN yarn install --only=production
 
-COPY . /home/app
+COPY --from=build /dist ./dist
+COPY --from=build /prisma ./prisma
 
-RUN npx prisma generate
+RUN yarn generate
 
-CMD ["sh", "-c", "npx prisma migrate deploy && yarn dev"]
+CMD ["sh", "-c", "npx prisma migrate deploy && yarn start"]

@@ -30,7 +30,7 @@
     "@fastify/sensible": "^5.6.0",
     "@fastify/swagger": "^8.14.0",
     "@fastify/swagger-ui": "^4.0.0",
-    "@prisma/client": "^5.17.0",
+    "@prisma/client": "^5.18.0",
     "awilix": "^10.0.2",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.1",

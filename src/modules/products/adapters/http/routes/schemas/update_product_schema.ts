@@ -18,6 +18,7 @@ export const updateProductSchema: FastifySchema = {
       name: { type: 'string' },
       description: { type: 'string' },
       price: { type: 'number' },
+      categoryId: { type: 'number' },
     },
   },
   response: {
