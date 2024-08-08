@@ -1,13 +1,8 @@
 import {FastifyRequest, FastifyReply} from 'fastify';
 
 import {Product} from '../../domain/models/product';
+import {toDomain} from './mappers/create_product_mapper';
 import {CreateProductUseCase, Listeners} from '../../application/usecases/create_product_use_case';
-
-const toDomain = (request: FastifyRequest): Product => {
-  const { name, description, price, categoryId } = request.body as {
-    name: string; description: string; price: number; categoryId: number };
-  return new Product(name, description, price, categoryId);
-}
 
 export class CreateProductController {
   public constructor(private readonly createProductUseCase: CreateProductUseCase) {}
