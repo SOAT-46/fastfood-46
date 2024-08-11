@@ -1,8 +1,13 @@
+import { orderStatus } from "@prisma/client";
+
 export const orderProperties = {
   id: { type: 'number' },
-  name: { type: 'string' },
-  description: { type: 'string' },
-  price: { type: 'number' },
+  number: { type: 'number' },
+  status: { type: 'string' },
+  receivedAt: { type: 'string' },
+  updatedAt: { type: 'string' },
+  paymentId: { type: 'number' },
+  userId: { type: 'number' }
 };
 
 export const validationProperties = {

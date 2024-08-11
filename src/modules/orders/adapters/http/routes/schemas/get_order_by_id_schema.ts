@@ -1,9 +1,9 @@
 import { FastifySchema } from 'fastify';
-import { orderProperties } from "./types";
+import { orderProperties, validationProperties } from "./types";
 
 export const getOrderByIdSchema: FastifySchema = {
-  summary: 'Get all products by the target category',
-  description: 'Get all products by the target category',
+  summary: 'Get order by the target id',
+  description: 'Get order by the target id',
   tags: ['orders'],
   params: {
     type: 'object',
@@ -14,12 +14,12 @@ export const getOrderByIdSchema: FastifySchema = {
   },
   response: {
     200: {
-      description: 'Products by the target category to show',
+      description: 'Order by the target id to show',
       type: 'object',
       properties: orderProperties
     },
     204: {
-      description: 'There is no product with this category to show',
+      description: 'There is no order with this id to show',
       type: 'object'
     },
   }
