@@ -16,6 +16,7 @@ const main = async () => {
     console.log(`Server listening at ${address}`);
     server.swagger();
   });
+  console.log('wdwdw');
 }
 
 main();
