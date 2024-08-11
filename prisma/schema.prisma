@@ -28,3 +28,10 @@ model categories {
   name     String     @db.VarChar(255)
   products products[]
 }
+
+model users {
+  id    Int           @id @default(autoincrement())
+  name  String        @db.VarChar(255)
+  cpf   String?       @db.VarChar(255)
+  email String        @db.VarChar(255)  
+}
