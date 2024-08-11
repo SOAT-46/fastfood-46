@@ -8,6 +8,7 @@ import {productRoutes} from './modules/products/adapters/http/routes/products';
 
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
+import { UserRoutes } from './modules/users/adapters/http/routes/users';
 
 const buildServer = () => {
   const server = Fastify({logger: true});
@@ -18,8 +19,8 @@ const buildServer = () => {
   server.register(swagger, {
     openapi: {
       info: {
-        title: 'Lanchonete',
-        description: 'FIAP Lanchonete',
+        title: 'fastfood-46',
+        description: 'FIAP fastfood-46',
         version: '0.0.1'
       },
       servers: [{url: 'http://localhost:3000'}],
@@ -41,6 +42,8 @@ const buildServer = () => {
 
   createDIContainer(server);
   server.register(productRoutes, {prefix: '/v1/products'});
+
+  server.register(UserRoutes, {prefix: '/v1/users'});
 
   return server;
 }
