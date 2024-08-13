@@ -5,6 +5,7 @@ import sensible from '@fastify/sensible';
 import {fastifyAwilixPlugin} from '@fastify/awilix';
 import {createDIContainer} from './container';
 import {productRoutes} from './modules/products/adapters/http/routes/products';
+import {orderRoutes} from './modules/orders/adapters/http/routes/orders';
 
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
@@ -42,6 +43,7 @@ const buildServer = () => {
 
   createDIContainer(server);
   server.register(productRoutes, {prefix: '/v1/products'});
+  server.register(orderRoutes, {prefix: '/v1/orders'});
 
   server.register(UserRoutes, {prefix: '/v1/users'});
 

@@ -19,7 +19,7 @@ model products {
   description String      @db.VarChar(255)
   price       Float
   createdAt   DateTime    @default(now()) @map("created_at")
-  categoryId  Int         @map("category_id") // Foreign key (required)
+  categoryId  Int         @map("category_id")
   category    categories? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
 
@@ -30,8 +30,52 @@ model categories {
 }
 
 model users {
-  id    Int           @id @default(autoincrement())
-  name  String        @db.VarChar(255)
-  cpf   String?       @db.VarChar(255)
-  email String        @db.VarChar(255)  
+  id    Int     @id @default(autoincrement())
+  name  String  @db.VarChar(255)
+  cpf   String? @unique @db.VarChar(255)
+  email String  @unique @db.VarChar(255)
+
+  orders orders[] @relation("UserOrders")
+}
+
+model orders {
+  id         Int         @id @default(autoincrement())
+  number     Int
+  status     orderStatus
+  receivedAt DateTime    @map("received_at")
+  updatedAt  DateTime    @map("updated_at")
+  userId     Int?        @map("user_id")
+  paymentId  Int?        @map("payment_id")
+
+  user    users?    @relation("UserOrders", fields: [userId], references: [id])
+  payment payments? @relation("OrderPayment")
+
+  @@map("orders")
+}
+
+model payments {
+  id         Int         @id @default(autoincrement())
+  orderId    Int         @unique @map("order_id")
+  value      Decimal
+  status     paymentsStatus
+  receivedAt DateTime    @map("received_at")
+  updatedAt  DateTime    @map("updated_at")
+
+  order orders @relation("OrderPayment", fields: [orderId], references: [id])
+}
+
+enum orderStatus {
+  PENDING
+  RECEIVED
+  PREPARATION
+  READY
+  DELIVERED
+  CANCELLED
+}
+
+enum paymentsStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
 }
