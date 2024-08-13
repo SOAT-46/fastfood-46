@@ -1,3 +1,4 @@
+import { GetOrdersController } from './get_orders_controller';
 import { GetOrderByIdController } from './get_order_by_id_controller';
 
-export { GetOrderByIdController };
+export { GetOrdersController, GetOrderByIdController };
