@@ -10,7 +10,8 @@ import {
 import { CreateUserUseCase } from './modules/users/application/usecases/create_user_use_case';
 import {
   GetOrdersUseCase,
-  GetOrderByIdUseCase
+  GetOrderByIdUseCase,
+  CreateOrderUseCase
 } from './modules/orders/application/usecases';
 
 import {
@@ -21,7 +22,8 @@ import {
 import { CreateUserController } from './modules/users/adapters/http/create_user_controller';
 import {
   GetOrdersController,
-  GetOrderByIdController
+  GetOrderByIdController,
+  CreateOrderController
 } from './modules/orders/adapters/http';
 
 import {PrismaProductsRepository} from './modules/products/infrastructure/repositories/prisma_products_repository';
@@ -57,6 +59,7 @@ export const createDIContainer = (server: FastifyInstance) => {
     createUserUseCase: asClass(CreateUserUseCase).singleton(),
     getOrdersUseCase: asClass(GetOrdersUseCase).singleton(),
     getOrderByIdUseCase: asClass(GetOrderByIdUseCase).singleton(),
+    createOrderUseCase: asClass(CreateOrderUseCase).singleton(),
 
     createProductController: asClass(CreateProductController).singleton(),
     updateProductController: asClass(UpdateProductController).singleton(),
@@ -65,6 +68,7 @@ export const createDIContainer = (server: FastifyInstance) => {
     createUserController: asClass(CreateUserController).singleton(),
     getOrdersController: asClass(GetOrdersController).singleton(),
     getOrderByIdController: asClass(GetOrderByIdController).singleton(),
+    createOrderController: asClass(CreateOrderController).singleton(),
   });
 
   server.decorate('diContainer', container);

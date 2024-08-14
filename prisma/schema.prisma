@@ -14,13 +14,14 @@ datasource db {
 }
 
 model products {
-  id          Int         @id @default(autoincrement())
-  name        String      @db.VarChar(255)
-  description String      @db.VarChar(255)
+  id          Int            @id @default(autoincrement())
+  name        String         @db.VarChar(255)
+  description String         @db.VarChar(255)
   price       Float
-  createdAt   DateTime    @default(now()) @map("created_at")
-  categoryId  Int         @map("category_id")
-  category    categories? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt   DateTime       @default(now()) @map("created_at")
+  categoryId  Int            @map("category_id")
+  category    categories?    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  orders      orderProduct[]
 }
 
 model categories {
@@ -42,24 +43,33 @@ model orders {
   id         Int         @id @default(autoincrement())
   number     Int
   status     orderStatus
-  receivedAt DateTime    @map("received_at")
-  updatedAt  DateTime    @map("updated_at")
+  receivedAt DateTime    @default(now()) @map("received_at")
+  updatedAt  DateTime    @default(now()) @map("updated_at")
   userId     Int?        @map("user_id")
-  paymentId  Int?        @map("payment_id")
 
-  user    users?    @relation("UserOrders", fields: [userId], references: [id])
-  payment payments? @relation("OrderPayment")
+  user     users?         @relation("UserOrders", fields: [userId], references: [id])
+  payment  payments?      @relation("OrderPayment")
+  products orderProduct[]
+}
 
-  @@map("orders")
+model orderProduct {
+  orderId   Int
+  productId Int
+  quantity  Int
+  order     orders   @relation(fields: [orderId], references: [id])
+  product   products @relation(fields: [productId], references: [id])
+
+  @@id([orderId, productId])
+  @@map("order_product")
 }
 
 model payments {
-  id         Int         @id @default(autoincrement())
-  orderId    Int         @unique @map("order_id")
+  id         Int            @id @default(autoincrement())
+  orderId    Int            @unique @map("order_id")
   value      Decimal
   status     paymentsStatus
-  receivedAt DateTime    @map("received_at")
-  updatedAt  DateTime    @map("updated_at")
+  receivedAt DateTime       @default(now()) @map("received_at")
+  updatedAt  DateTime       @default(now()) @map("updated_at")
 
   order orders @relation("OrderPayment", fields: [orderId], references: [id])
 }

@@ -1,4 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import { OrderProduct } from './../../domain/models/order_product';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 import { toDomain } from './mappers/order_mapper';
 import { Order } from '../../domain/models/order';
@@ -30,8 +31,55 @@ export class PrismaOrdersRepository implements OrdersRepository {
     return resp ? toDomain(resp) : undefined;
   }
 
-  // public async Save(data: Order): Promise<Order> {
-  //   const resp = await this.prisma.orders.create({ data });
-  //   return toDomain(resp);
-  // }
+  public async Save(orderProducts: OrderProduct[], userId?: number): Promise<Order> {
+    userId && await this.prisma.users.findFirstOrThrow({ where: { id: userId } })
+
+    const totalCount = await this.prisma.orders.count();
+    const nextOrder = totalCount + 1;
+
+    const productIds = orderProducts.map(product => product.productId) as number[];
+
+    const totalValue = await this.prisma.products.aggregate({
+      where: {
+        id: {
+          in: productIds,
+        },
+      },
+      _sum: {
+        price: true,
+      },
+    });
+
+    const productsToAssociate = orderProducts.map(product => {
+      return {
+        product: {
+          connect: { id: product.productId as number }
+        },
+        quantity: product.quantity
+      }
+    });
+
+    const order: Prisma.ordersCreateArgs = {
+      data: {
+        number: nextOrder,
+        status: 'PENDING',
+        userId: userId && userId,
+        products: {
+          create: productsToAssociate
+        },
+        payment: {
+          create: {
+            status: 'COMPLETED',
+            value: totalValue._sum.price as number
+          }
+        }
+      },
+      include: {
+        payment: true
+      }
+    };
+
+    const resp = await this.prisma.orders.create(order);
+    return toDomain(resp);
+  }
 }

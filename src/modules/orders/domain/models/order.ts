@@ -4,7 +4,6 @@ export class Order {
   constructor(
     public id: number,
     public number: number,
-    // public status: orderStatus,
     public status: 'PENDING' | 'RECEIVED' | 'PREPARATION' | 'READY' | 'DELIVERED' | 'CANCELLED',
     public receivedAt: Date,
     public updatedAt: Date,
