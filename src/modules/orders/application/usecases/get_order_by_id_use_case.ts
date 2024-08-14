@@ -4,7 +4,7 @@ import {PaginatedResponse} from "../../../shared/paginated_response";
 import { Order } from "../../domain/models/order";
 
 export interface Listeners {
-  onSuccess: (product: Order) => void;
+  onSuccess: (order: Order) => void;
   onEmpty: () => void;
 }
 
