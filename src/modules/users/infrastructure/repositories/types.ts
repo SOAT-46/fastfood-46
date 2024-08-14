@@ -1,7 +1,7 @@
 export interface PrismaUsers {
     id: number;
     name: string;
-    cpf: string|null;
+    cpf: string;
     email: string;
   }
   

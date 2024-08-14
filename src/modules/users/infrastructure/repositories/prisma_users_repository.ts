@@ -11,6 +11,12 @@ export class PrismaUsersRepository implements UsersRepository {
     const resp = await this.prisma.users.findFirst({where: {email, name}})
     return resp ? toDomain(resp) : undefined;
   }
+
+  public async GetUsersByCPF(cpf: string): Promise<User | undefined> {
+    const resp = await this.prisma.users.findFirst({where: {cpf}})
+    return resp ? toDomain(resp) : undefined;
+  }
+  
   public async Save(data: User): Promise<User> {
     const resp = await this.prisma.users.create({data});
     return toDomain(resp);
