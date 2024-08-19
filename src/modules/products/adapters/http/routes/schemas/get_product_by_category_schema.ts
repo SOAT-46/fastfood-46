@@ -1,5 +1,5 @@
 import {FastifySchema} from 'fastify';
-import {productProperties} from "./types";
+import {productProperties} from './types';
 
 export const getProductByCategorySchema: FastifySchema = {
   summary: 'Get all products by the target category',
@@ -8,16 +8,16 @@ export const getProductByCategorySchema: FastifySchema = {
   params: {
     type: 'object',
     properties: {
-      id: { type: 'number' }
+      id: {type: 'number'}
     },
     required: ['id']
   },
   querystring: {
-    title: "pagination",
+    title: 'pagination',
     type: 'object',
     properties: {
-      limit: { type: 'number' },
-      page: { type: 'number' },
+      limit: {type: 'number'},
+      page: {type: 'number'},
     }
   },
   response: {
@@ -36,10 +36,10 @@ export const getProductByCategorySchema: FastifySchema = {
         meta: {
           type: 'object',
           properties: {
-            totalCount: { type: 'number' },
-            totalPages: { type: 'number' },
-            currentPage: { type: 'number' },
-            perPage: { type: 'number' },
+            totalCount: {type: 'number'},
+            totalPages: {type: 'number'},
+            currentPage: {type: 'number'},
+            perPage: {type: 'number'},
           },
           required: ['totalCount', 'totalPages', 'currentPage', 'perPage']
         }

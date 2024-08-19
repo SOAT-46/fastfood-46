@@ -1,14 +1,14 @@
-import { OrderProduct } from './../../domain/models/order_product';
-import { Prisma, PrismaClient } from '@prisma/client';
+import {OrderProduct} from './../../domain/models/order_product';
+import {Prisma, PrismaClient} from '@prisma/client';
 
-import { toDomain } from './mappers/order_mapper';
-import { Order } from '../../domain/models/order';
-import { OrdersRepository } from 'modules/orders/domain/repositories/orders_repository';
-import { PaginatedResponse, Meta } from '../../../shared/paginated_response';
-import { PrismaOrder } from './types';
+import {toDomain} from './mappers/order_mapper';
+import {Order} from '../../domain/models/order';
+import {OrdersRepository} from 'modules/orders/domain/repositories/orders_repository';
+import {PaginatedResponse, Meta} from '../../../shared/paginated_response';
+import {PrismaOrder} from './types';
 
 export class PrismaOrdersRepository implements OrdersRepository {
-  public constructor(private readonly prisma: PrismaClient) { }
+  public constructor(private readonly prisma: PrismaClient) {}
 
   public async GetOrders(page: number, limit: number): Promise<PaginatedResponse<Order>> {
     const skip = (page - 1) * limit;
@@ -27,12 +27,12 @@ export class PrismaOrdersRepository implements OrdersRepository {
   }
 
   public async GetById(id: number): Promise<Order | undefined> {
-    const resp = await this.prisma.orders.findFirst({ where: { id } });
+    const resp = await this.prisma.orders.findFirst({where: {id}});
     return resp ? toDomain(resp) : undefined;
   }
 
   public async Save(orderProducts: OrderProduct[], userId?: number): Promise<Order> {
-    userId && await this.prisma.users.findFirstOrThrow({ where: { id: userId } })
+    if (userId) await this.prisma.users.findFirstOrThrow({where: {id: userId}});
 
     const totalCount = await this.prisma.orders.count();
     const nextOrder = totalCount + 1;
@@ -53,7 +53,7 @@ export class PrismaOrdersRepository implements OrdersRepository {
     const productsToAssociate = orderProducts.map(product => {
       return {
         product: {
-          connect: { id: product.productId as number }
+          connect: {id: product.productId as number}
         },
         quantity: product.quantity
       }

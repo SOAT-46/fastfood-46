@@ -4,7 +4,7 @@ import {Product} from '../../domain/models/product';
 import {CreateProductUseCase, Listeners} from '../../application/usecases/create_product_use_case';
 
 const toDomain = (request: FastifyRequest): Product => {
-  const { name, description, price, categoryId } = request.body as {
+  const {name, description, price, categoryId} = request.body as {
     name: string; description: string; price: number; categoryId: number };
   return new Product(name, description, price, categoryId);
 }
@@ -30,6 +30,6 @@ export class CreateProductController {
   }
 
   private onInvalid(response: FastifyReply) {
-    response.badRequest("The product is invalid");
+    response.badRequest('The product is invalid');
   }
 }

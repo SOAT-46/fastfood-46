@@ -1,5 +1,5 @@
-import {User} from "../../domain/models/user";
-import {UsersRepository} from "../../domain/repositories/users_repository";
+import {User} from '../../domain/models/user';
+import {UsersRepository} from '../../domain/repositories/users_repository';
 
 export interface Listeners {
   onSuccess: (user: User) => void;

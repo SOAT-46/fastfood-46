@@ -1,5 +1,4 @@
 import {User} from '../models/user';
-import {PaginatedResponse} from "../../../shared/paginated_response";
 
 export interface UsersRepository {
 

@@ -1,8 +1,6 @@
-import { Order } from './../../domain/models/order';
-import { OrderProduct } from './../../domain/models/order_product';
-import { OrdersRepository } from './../../domain/repositories/orders_repository';
-
-import { CategoriesRepository } from "../../../categories/domain/repositories/categories_repository";
+import {Order} from './../../domain/models/order';
+import {OrderProduct} from './../../domain/models/order_product';
+import {OrdersRepository} from './../../domain/repositories/orders_repository';
 
 export interface Listeners {
   onSuccess: (order: Order) => void;

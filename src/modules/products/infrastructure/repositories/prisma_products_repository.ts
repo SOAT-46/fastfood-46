@@ -28,7 +28,7 @@ export class PrismaProductsRepository implements ProductsRepository {
     const totalPages = Math.ceil(totalCount / limit);
 
     const products: PrismaProduct[] = await this.prisma.products.findMany({
-      where: { categoryId: id },
+      where: {categoryId: id},
       skip: skip,
       take: limit
     });

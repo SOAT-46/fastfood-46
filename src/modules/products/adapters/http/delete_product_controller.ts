@@ -20,6 +20,6 @@ export class DeleteProductController {
   }
 
   private onNotFound(response: FastifyReply) {
-    response.notFound("The product does not exist");
+    response.notFound('The product does not exist');
   }
 }

@@ -1,4 +1,4 @@
-import { FastifySchema } from 'fastify';
+import {FastifySchema} from 'fastify';
 import {productProperties, validationProperties} from './types';
 
 export const createProductSchema: FastifySchema = {
@@ -8,10 +8,10 @@ export const createProductSchema: FastifySchema = {
   body: {
     type: 'object',
     properties: {
-      name: { type: 'string' },
-      description: { type: 'string' },
-      price: { type: 'number' },
-      categoryId: { type: 'number' },
+      name: {type: 'string'},
+      description: {type: 'string'},
+      price: {type: 'number'},
+      categoryId: {type: 'number'},
     },
     required: ['name', 'description', 'price', 'categoryId'],
   },
