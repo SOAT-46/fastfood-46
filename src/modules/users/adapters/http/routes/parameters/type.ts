@@ -8,5 +8,5 @@
     email: string;
   }
   
-  export { Params, CreateUsertBody }
+  export {Params, CreateUsertBody}
   

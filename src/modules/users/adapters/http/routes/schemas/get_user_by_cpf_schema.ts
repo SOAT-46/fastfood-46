@@ -1,4 +1,4 @@
-import { FastifySchema } from 'fastify';
+import {FastifySchema} from 'fastify';
 
 export const getUserByCPFSchema: FastifySchema = {
   summary: 'Get user by cpf',
@@ -7,7 +7,7 @@ export const getUserByCPFSchema: FastifySchema = {
   params: {
     type: 'object',
     properties: {
-      cpf: { type: 'string' },
+      cpf: {type: 'string'},
     },
     required: ['cpf'],
   },
@@ -16,21 +16,21 @@ export const getUserByCPFSchema: FastifySchema = {
       description: 'User created',
       type: 'object',
       properties: {
-        cpf: { type: 'string' },
+        cpf: {type: 'string'},
       },
     },
     200: {
       description: 'User already exists',
       type: 'object',
       properties: {
-        cpf: { type: 'string' },
+        cpf: {type: 'string'},
       },
     },
     400: {
       description: 'Validation error: One or more fields are missing or invalid. Ensure all required fields are provided and conform to the expected data types.',
       type: 'object',
       properties: {
-        cpf: { type: 'string' },
+        cpf: {type: 'string'},
       }
     }
   }

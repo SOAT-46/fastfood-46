@@ -1,6 +1,6 @@
 import {Product} from '../../domain/models/product';
 import {ProductsRepository} from '../../domain/repositories/products_repository';
-import {CategoriesRepository} from "../../../categories/domain/repositories/categories_repository";
+import {CategoriesRepository} from '../../../categories/domain/repositories/categories_repository';
 
 export interface Listeners {
   onSuccess: (product: Product) => void;

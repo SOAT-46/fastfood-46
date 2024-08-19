@@ -1,5 +1,5 @@
-import { FastifySchema } from 'fastify'
-import {validationProperties} from "./types";
+import {FastifySchema} from 'fastify'
+import {validationProperties} from './types';
 
 export const deleteProductSchema: FastifySchema = {
   summary: 'Deletes a product by the target id',
@@ -8,7 +8,7 @@ export const deleteProductSchema: FastifySchema = {
   params: {
     type: 'object',
     properties: {
-      id: { type: 'number' }
+      id: {type: 'number'}
     },
     required: ['id']
   },

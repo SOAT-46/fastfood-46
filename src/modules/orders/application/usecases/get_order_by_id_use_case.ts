@@ -1,7 +1,5 @@
-
-import { OrdersRepository } from "../../domain/repositories/orders_repository";
-import {PaginatedResponse} from "../../../shared/paginated_response";
-import { Order } from "../../domain/models/order";
+import {OrdersRepository} from '../../domain/repositories/orders_repository';
+import {Order} from '../../domain/models/order';
 
 export interface Listeners {
   onSuccess: (order: Order) => void;

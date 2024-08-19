@@ -1,8 +1,8 @@
 import {FastifyRequest, FastifyReply} from 'fastify';
-import {Params} from "./routes/parameters/types";
-import {GetProductsByCategoryUseCase, Listeners} from "../../application/usecases/get_products_by_category_use_case";
-import {PaginatedResponse} from "../../../shared/paginated_response";
-import {Product} from "../../domain/models/product";
+import {Params} from './routes/parameters/types';
+import {GetProductsByCategoryUseCase, Listeners} from '../../application/usecases/get_products_by_category_use_case';
+import {PaginatedResponse} from '../../../shared/paginated_response';
+import {Product} from '../../domain/models/product';
 
 export class GetProductsByCategoryController {
   public constructor(private readonly getProductsUseCase: GetProductsByCategoryUseCase) {}
