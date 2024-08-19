@@ -4,7 +4,7 @@ import {User} from '../../domain/models/user';
 import {CreateUserUseCase, Listeners} from '../../application/usecases/create_user_use_case';
 
 const toDomain = (request: FastifyRequest): User => {
-  const { name, email, cpf } = request.body as {
+  const {name, email, cpf} = request.body as {
     name: string; email: string; cpf: string; };
   return new User(name, email, cpf);
 }
@@ -30,6 +30,6 @@ export class CreateUserController {
   }
 
   private onInvalid(response: FastifyReply) {
-    response.code(400).send("The user is invalid");
+    response.code(400).send('The user is invalid');
   }
 }

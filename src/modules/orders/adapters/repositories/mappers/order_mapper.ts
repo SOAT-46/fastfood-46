@@ -1,5 +1,5 @@
-import { PrismaOrder } from '../models';
-import { Order } from '../../../domain/models/order';
+import {PrismaOrder} from '../models';
+import {Order} from '../../../domain/models/order';
 
 export const toDomain = (order: PrismaOrder): Order => {
   const {

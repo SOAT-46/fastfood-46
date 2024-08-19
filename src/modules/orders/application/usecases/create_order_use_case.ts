@@ -1,6 +1,6 @@
-import { Order } from './../../domain/models/order';
-import { OrderProduct } from './../../domain/models/order_product';
-import { SaveOrderPort } from './../../domain/gateways';
+import {Order} from './../../domain/models/order';
+import {OrderProduct} from './../../domain/models/order_product';
+import {SaveOrderPort} from './../../domain/gateways';
 
 export interface Listeners {
   onSuccess: (order: Order) => void;

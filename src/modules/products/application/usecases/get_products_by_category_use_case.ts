@@ -1,6 +1,6 @@
-import { Product } from "../../domain/models/product";
-import { GetProductsByCategoryPort } from "../../domain/gateways";
-import { PaginatedResponse } from "../../../shared/paginated_response";
+import {Product} from '../../domain/models/product';
+import {GetProductsByCategoryPort} from '../../domain/gateways';
+import {PaginatedResponse} from '../../../shared/paginated_response';
 
 export interface Listeners {
   onSuccess: (product: PaginatedResponse<Product>) => void;

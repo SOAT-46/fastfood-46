@@ -1,4 +1,4 @@
-import { AwilixContainer, asClass } from 'awilix';
+import {AwilixContainer, asClass} from 'awilix';
 
 import {
   CreateOrderController,
@@ -12,9 +12,9 @@ import {
   GetOrdersUseCase
 } from '../application/usecases';
 
-import { GetOrderByIdGateway, SaveOrderGateway, GetOrdersGateway } from '../adapters/gateways';
+import {GetOrderByIdGateway, SaveOrderGateway, GetOrdersGateway} from '../adapters/gateways';
 
-import { PrismaOrdersRepository } from '../adapters/repositories';
+import {PrismaOrdersRepository} from '../adapters/repositories';
 
 export const ordersDIContainer = (container: AwilixContainer<any>) => {
   container.register({

@@ -1,8 +1,8 @@
-import { OrderProduct } from './../../domain/models/order_product';
-import { FastifyRequest, FastifyReply } from 'fastify';
+import {OrderProduct} from './../../domain/models/order_product';
+import {FastifyRequest, FastifyReply} from 'fastify';
 
-import { Order } from '../../domain/models/order';
-import { CreateOrderUseCase, Listeners } from '../../application/usecases/create_order_use_case';
+import {Order} from '../../domain/models/order';
+import {CreateOrderUseCase, Listeners} from '../../application/usecases/create_order_use_case';
 
 const toDomain = (products: OrderProduct[]): OrderProduct[] => {
   const orderProducts = products.map(product => {
@@ -19,7 +19,7 @@ export class CreateOrderController {
       onInvalid: () => this.onInvalid(response),
     };
 
-    const { userId, products } = request.body as {
+    const {userId, products} = request.body as {
       userId: number;
       products: OrderProduct[]
     };
@@ -32,6 +32,6 @@ export class CreateOrderController {
   }
 
   private onInvalid(response: FastifyReply) {
-    response.badRequest("The order is invalid");
+    response.badRequest('The order is invalid');
   }
 }

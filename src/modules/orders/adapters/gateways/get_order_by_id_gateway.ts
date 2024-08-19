@@ -1,6 +1,6 @@
-import { GetOrderByIdPort } from "modules/orders/domain/gateways/get_order_by_id_port";
-import { Order } from "modules/orders/domain/models/order";
-import { OrdersRepository } from "modules/orders/domain/repositories/orders_repository";
+import {GetOrderByIdPort} from 'modules/orders/domain/gateways/get_order_by_id_port';
+import {Order} from 'modules/orders/domain/models/order';
+import {OrdersRepository} from 'modules/orders/domain/repositories/orders_repository';
 
 export class GetOrderByIdGateway implements GetOrderByIdPort {
 

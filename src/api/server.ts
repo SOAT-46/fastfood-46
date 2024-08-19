@@ -2,17 +2,17 @@ import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import sensible from '@fastify/sensible';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { fastifyAwilixPlugin } from '@fastify/awilix';
-import { createDIContainer } from '../container';
-import { productRoutes } from '../modules/products/adapters/http/routes/products';
-import { orderRoutes } from '../modules/orders/adapters/http/routes/orders';
-import { UserRoutes } from '../modules/users/adapters/http/routes/users';
+import {fastifyAwilixPlugin} from '@fastify/awilix';
+import {createDIContainer} from '../container';
+import {productRoutes} from '../modules/products/adapters/http/routes/products';
+import {orderRoutes} from '../modules/orders/adapters/http/routes/orders';
+import {UserRoutes} from '../modules/users/adapters/http/routes/users';
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
 import fastifyHealthcheck from 'fastify-healthcheck';
 
 const buildServer = () => {
-  const server = Fastify({ logger: true });
+  const server = Fastify({logger: true});
 
   server.register(cors);
   server.register(sensible);
@@ -24,7 +24,7 @@ const buildServer = () => {
         description: 'FIAP fastfood-46',
         version: '0.0.1'
       },
-      servers: [{ url: 'http://localhost:3000' }],
+      servers: [{url: 'http://localhost:3000'}],
     },
     hideUntagged: true,
   });
@@ -49,4 +49,4 @@ const buildServer = () => {
   return server;
 }
 
-export { buildServer };
+export {buildServer};

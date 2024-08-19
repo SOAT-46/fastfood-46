@@ -1,5 +1,5 @@
-import { GetProductByIdPort } from 'modules/products/domain/gateways/get_product_by_id_port';
-import { DeleteProductByIdPort } from '../../domain/gateways';
+import {GetProductByIdPort} from 'modules/products/domain/gateways/get_product_by_id_port';
+import {DeleteProductByIdPort} from '../../domain/gateways';
 
 export interface Listeners {
   onSuccess: () => void;

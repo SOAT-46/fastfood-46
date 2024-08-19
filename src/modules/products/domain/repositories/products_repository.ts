@@ -1,5 +1,5 @@
-import { Product } from '../models/product';
-import { PaginatedResponse } from "../../../shared/paginated_response";
+import {Product} from '../models/product';
+import {PaginatedResponse} from '../../../shared/paginated_response';
 
 export interface ProductsRepository {
 

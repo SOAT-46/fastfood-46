@@ -1,4 +1,4 @@
-import { AwilixContainer, asClass } from 'awilix';
+import {AwilixContainer, asClass} from 'awilix';
 
 import {
   CreateUserUseCase,
@@ -13,7 +13,7 @@ import {
   GetUserByCpfGateway,
   GetUserGateway
 } from '../adapters/gateways';
-import { PrismaUsersRepository } from '../adapters/repositories/prisma_users_repository';
+import {PrismaUsersRepository} from '../adapters/repositories/prisma_users_repository';
 
 export const usersDIContainer = (container: AwilixContainer<any>) => {
   container.register({

@@ -1,6 +1,6 @@
-import { Product } from '../../domain/models/product';
-import { CreateProductPort, GetProductPort } from '../../domain/gateways';
-import { GetCategoryByIdPort } from "../../../categories/domain/gateways/get_category_by_id_port";
+import {Product} from '../../domain/models/product';
+import {CreateProductPort, GetProductPort} from '../../domain/gateways';
+import {GetCategoryByIdPort} from '../../../categories/domain/gateways/get_category_by_id_port';
 
 export interface Listeners {
   onSuccess: (product: Product) => void;

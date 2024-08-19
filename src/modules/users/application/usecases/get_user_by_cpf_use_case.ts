@@ -1,5 +1,5 @@
-import { User } from "../../domain/models/user";
-import { GetUserByCpfPort } from "../../domain/gateways";
+import {User} from '../../domain/models/user';
+import {GetUserByCpfPort} from '../../domain/gateways';
 
 export interface Listeners {
   onSuccess: (user: User) => void;

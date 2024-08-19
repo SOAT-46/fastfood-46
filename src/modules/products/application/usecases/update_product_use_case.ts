@@ -1,5 +1,5 @@
-import { Product } from '../../domain/models/product';
-import { UpdateProductPort, GetProductByIdPort } from 'modules/products/domain/gateways';
+import {Product} from '../../domain/models/product';
+import {UpdateProductPort, GetProductByIdPort} from 'modules/products/domain/gateways';
 
 export interface Listeners {
   onSuccess: (product: Product) => void;
