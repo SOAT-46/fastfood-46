@@ -12,6 +12,11 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1GB'
   db:
     container_name: postgres
     image: postgres
@@ -29,6 +34,11 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '2GB'
 
 volumes:
   db-data:
