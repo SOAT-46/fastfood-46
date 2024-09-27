@@ -1,5 +1,25 @@
 ## Fastfood-46
 
+## Documentation
+
+For a complete understanding of the functionalities and how to interact with the API, use Postman.
+
+### Importing the collection:
+
+1. **Open Postman.**
+2. **Import:** Click "Import" and select the collection file.
+3. **Locate:** Look for `Fastfood-46.postman_collection.json` in the `docs` folder.
+4. **Explore:** The collection will be available for you to test the endpoints.
+
+**By using Postman, you can:**
+
+* **Test requests:** Send HTTP requests to different endpoints and view the responses.
+* **Manage environments:** Configure different environments (e.g., development, production) for your tests.
+* **Create collections:** Organize your requests into thematic collections.
+* **Share:** Share your collections with other developers.
+
+**With Postman, exploring and testing your API becomes more efficient and intuitive.**
+
 ### Setting up Node Version
 
 To ensure you are using the correct Node.js version specified in the `.nvmrc` file, run the following command:
@@ -13,6 +33,7 @@ If you don't have nvm (Node Version Manager) installed, follow the instructions 
 For more details about nvm, you can visit their [GitHub repository](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ### Environment Variables
+
 This project requires certain environment variables to be set.
 You can find a template for these variables in the .env.example file.
 To create your own .env file, run the following command:
