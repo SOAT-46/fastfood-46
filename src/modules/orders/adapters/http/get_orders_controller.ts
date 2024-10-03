@@ -11,7 +11,8 @@ export class GetOrdersController {
     const {page = 1, limit = 10} = request.query as { page?: number, limit?: number };
     const listeners: Listeners = {
       onSuccess: (page) => this.onSuccess(page, response),
-      onEmpty: () => this.onEmpty(response)
+      onEmpty: () => this.onEmpty(response),
+      onBadRequest: () => this.onBadRequest(response),
     }
     return this.getOrdersUseCase.Execute(page, limit, listeners)
   }
@@ -22,5 +23,9 @@ export class GetOrdersController {
 
   private onEmpty(response: FastifyReply) {
     response.code(204)
+  }
+
+  private onBadRequest(response: FastifyReply) {
+    response.badRequest("Page or Limit invalid");
   }
 }

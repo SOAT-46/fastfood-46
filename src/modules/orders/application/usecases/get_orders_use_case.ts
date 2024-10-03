@@ -5,12 +5,16 @@ import { PaginatedResponse } from "../../../shared/paginated_response";
 export interface Listeners {
   onSuccess: (order: PaginatedResponse<Order>) => void;
   onEmpty: () => void;
+  onBadRequest: () => void;
 }
 
 export class GetOrdersUseCase {
-  public constructor(private readonly ordersRepository: OrdersRepository) { }
+  public constructor(private readonly ordersRepository: OrdersRepository) {}
 
   public async Execute(page: number, limit: number, listeners: Listeners): Promise<void> {
+    if (page <= 0 || limit <= 0) {
+      return listeners.onBadRequest();
+    }
     const response = await this.ordersRepository.GetOrders(page, limit);
 
     if (response.IsEmpty()) {
