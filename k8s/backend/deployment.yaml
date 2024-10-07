@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastfood-api
+  labels:
+    name: fastfood-api
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastfood-api
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: fastfood-api
+        tier: backend
+        app.kubernetes.io/created-by: kalilventura
+    spec:
+      containers:
+      - name: fastfood-api
+        image: kalilventura/fastfood-46-server:2.0.0
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+          requests:
+            memory: "500m"
+            cpu: "50m"
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: fastfood-configmap
+        - secretRef:
+            name: fastfood-secrets
+        env:
+        - name: DATABASE_URL
+          value: postgresql://$(username):$(password)@$(hostname):$(port)/$(databasename)
+        # Initial probe
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 5
+          failureThreshold: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+        # Once the container is up, test using HTTP health check
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 10
+          failureThreshold: 5
+          timeoutSeconds: 5
