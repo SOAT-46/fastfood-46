@@ -67,3 +67,12 @@ This command will build and start all the services defined in your docker-compos
 
 ### References
 * [Docker's Node.js guide](https://docs.docker.com/language/nodejs/)
+
+
+### Execute stress test:
+
+To execute the stress test, please, execute the command below:
+
+```bash
+bash ./stress.sh 0.0001
+```

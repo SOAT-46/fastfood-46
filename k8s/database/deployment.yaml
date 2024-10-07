@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastfood-db
+  labels:
+    name: fastfood-db
+    tier: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastfood-db
+      tier: database
+  template:
+    metadata:
+      labels:
+        app: fastfood-db
+        tier: database
+        app.kubernetes.io/created-by: kalilventura
+    spec:
+      containers:
+      - name: fastfood-db
+        image: postgres:17.0-alpine3.20
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "800m"
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - configMapRef:
+            name: fastfood-configmap
+        - secretRef:
+            name: fastfood-secrets
+        env:
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: fastfood-configmap
+              key: databasename
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: fastfood-secrets
+              key: username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: fastfood-secrets
+              key: password
+        volumeMounts:
+        - name: fastfood-db-storage
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: fastfood-db-storage
+        persistentVolumeClaim:
+          claimName: fastfood-db-pvc
