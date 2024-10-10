@@ -5,7 +5,7 @@ import { toDomain } from './mappers/order_mapper';
 import { Order } from '../../domain/models/order';
 import { OrdersRepository } from 'modules/orders/domain/repositories/orders_repository';
 import { PaginatedResponse, Meta } from '../../../shared/paginated_response';
-import { PrismaOrder } from './types';
+import { PrismaOrder } from './models';
 
 export class PrismaOrdersRepository implements OrdersRepository {
   public constructor(private readonly prisma: PrismaClient) { }

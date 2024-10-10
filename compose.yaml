@@ -10,11 +10,11 @@ services:
     networks:
       - application-network
     depends_on:
-      db:
+      fastfood_database:
         condition: service_healthy
-  db:
-    container_name: postgres
-    image: postgres
+  fastfood_database:
+    container_name: fastfood_database
+    image: postgres:17.0-alpine3.20
     restart: always
     volumes:
       - db-data:/var/lib/postgresql/data

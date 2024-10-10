@@ -3,13 +3,13 @@ import cors from '@fastify/cors';
 import sensible from '@fastify/sensible';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {fastifyAwilixPlugin} from '@fastify/awilix';
-import {createDIContainer} from './container';
-import {productRoutes} from './modules/products/adapters/http/routes/products';
-import {orderRoutes} from './modules/orders/adapters/http/routes/orders';
+import {createDIContainer} from '../container';
+import {productRoutes} from '../modules/products/adapters/http/routes/products';
+import {orderRoutes} from '../modules/orders/adapters/http/routes/orders';
 
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
-import { UserRoutes } from './modules/users/adapters/http/routes/users';
+import { UserRoutes } from '../modules/users/adapters/http/routes/users';
 
 const buildServer = () => {
   const server = Fastify({logger: true});
@@ -44,7 +44,6 @@ const buildServer = () => {
   createDIContainer(server);
   server.register(productRoutes, {prefix: '/v1/products'});
   server.register(orderRoutes, {prefix: '/v1/orders'});
-
   server.register(UserRoutes, {prefix: '/v1/users'});
 
   return server;
