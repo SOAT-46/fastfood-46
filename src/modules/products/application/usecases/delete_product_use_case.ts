@@ -1,4 +1,5 @@
-import {ProductsRepository} from '../../domain/repositories/products_repository';
+import { GetProductByIdPort } from 'modules/products/domain/gateways/get_product_by_id_port';
+import { DeleteProductByIdPort } from '../../domain/gateways';
 
 export interface Listeners {
   onSuccess: () => void;
@@ -6,14 +7,16 @@ export interface Listeners {
 }
 
 export class DeleteProductUseCase {
-  public constructor(private readonly productsRepository: ProductsRepository) {}
+  public constructor(
+    private readonly getProductByIdGateway: GetProductByIdPort,
+    private readonly deleteProductByIdGateway: DeleteProductByIdPort) {}
 
   public async execute(id: number, listeners: Listeners): Promise<void> {
-    const exists = await this.productsRepository.GetById(id);
+    const exists = await this.getProductByIdGateway.Execute(id);
     if (!exists) {
       return listeners.onNotFound();
     }
-    await this.productsRepository.DeleteById(id);
+    await this.deleteProductByIdGateway.Execute(id);
     return listeners.onSuccess();
   }
 }

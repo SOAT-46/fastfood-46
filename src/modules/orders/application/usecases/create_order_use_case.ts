@@ -1,6 +1,6 @@
 import { Order } from './../../domain/models/order';
 import { OrderProduct } from './../../domain/models/order_product';
-import { OrdersRepository } from './../../domain/repositories/orders_repository';
+import { SaveOrderPort } from './../../domain/gateways';
 
 export interface Listeners {
   onSuccess: (order: Order) => void;
@@ -8,9 +8,7 @@ export interface Listeners {
 }
 
 export class CreateOrderUseCase {
-  public constructor(
-    private readonly ordersRepository: OrdersRepository
-  ) {}
+  public constructor(private readonly saveOrderGateway: SaveOrderPort) { }
 
   public async execute(products: OrderProduct[], listeners: Listeners, userId?: number): Promise<void> {
     const allValid = products.every(orderProduct => orderProduct.isValid());
@@ -18,11 +16,11 @@ export class CreateOrderUseCase {
       return listeners.onInvalid();
     }
 
-    try {
-      const created = await this.ordersRepository.Save(products, userId);
-      return listeners.onSuccess(created);
-    } catch {
+    const created = await this.saveOrderGateway.Execute(products, userId);
+    if (created == undefined) {
       return listeners.onInvalid();
+    } else {
+      return listeners.onSuccess(created);
     }
   }
 }

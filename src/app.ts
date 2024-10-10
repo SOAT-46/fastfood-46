@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import {buildServer} from './server';
+import {buildServer} from './api/server';
 
 const main = async () => {
     dotenv.config();

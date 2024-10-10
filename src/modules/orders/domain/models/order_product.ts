@@ -1,5 +1,3 @@
-import { orderStatus } from "../enums/order_status";
-
 export class OrderProduct {
   constructor(
     public quantity: number,
