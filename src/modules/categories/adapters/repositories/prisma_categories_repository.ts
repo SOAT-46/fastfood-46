@@ -1,13 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 
-import { Category } from '../../domain/models/category';
-import { CategoriesRepository } from '../../domain/repositories/categories_repository';
+import { CategoriesRepository } from './contracts/categories_repository';
+import { PrismaCategory } from './models';
 
 export class PrismaCategoriesRepository implements CategoriesRepository {
   public constructor(private readonly prisma: PrismaClient) { }
 
-  public async GetById(id: number): Promise<Category | undefined> {
-    const resp = await this.prisma.categories.findUnique({ where: { id } });
-    return resp ? new Category(id, resp.name) : undefined;
+  public async GetById(id: number): Promise<PrismaCategory | undefined> {
+    const category = await this.prisma.categories.findUnique({ where: { id } });
+    return category ? PrismaCategory.fromDatabase(category) : undefined;
   }
 }

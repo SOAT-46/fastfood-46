@@ -2,10 +2,8 @@ interface Params {
   id: number;
 }
 
-interface UpdateProductBody {
-  name: string;
-  description: string;
-  price: number;
+interface UpdateOrderRequest {
+  status: string;
 }
 
-export {Params, UpdateProductBody}
+export { Params, UpdateOrderRequest };

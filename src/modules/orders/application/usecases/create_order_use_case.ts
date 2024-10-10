@@ -1,6 +1,6 @@
-import { Order } from './../../domain/models/order';
-import { OrderProduct } from './../../domain/models/order_product';
-import { SaveOrderPort } from './../../domain/gateways';
+import { Order } from "../../domain/entities/order";
+import { SaveOrderPort } from "../../domain/gateways";
+import {CreateOrderInput} from "../../domain/entities/create_order_input";
 
 export interface Listeners {
   onSuccess: (order: Order) => void;
@@ -10,17 +10,16 @@ export interface Listeners {
 export class CreateOrderUseCase {
   public constructor(private readonly saveOrderGateway: SaveOrderPort) { }
 
-  public async execute(products: OrderProduct[], listeners: Listeners, userId?: number): Promise<void> {
-    const allValid = products.every(orderProduct => orderProduct.isValid());
-    if (!allValid) {
+  public async execute(dto: CreateOrderInput, listeners: Listeners): Promise<void> {
+    if (!dto.isValid()) {
       return listeners.onInvalid();
     }
 
-    const created = await this.saveOrderGateway.Execute(products, userId);
-    if (created == undefined) {
-      return listeners.onInvalid();
-    } else {
+    const created = await this.saveOrderGateway.Execute(dto);
+    if (created) {
       return listeners.onSuccess(created);
+    } else {
+      return listeners.onInvalid();
     }
   }
 }

@@ -1,15 +1,9 @@
-import { OrderProduct } from './../../domain/models/order_product';
-import { FastifyRequest, FastifyReply } from 'fastify';
+import {FastifyReply, FastifyRequest} from 'fastify';
 
-import { Order } from '../../domain/models/order';
-import { CreateOrderUseCase, Listeners } from '../../application/usecases/create_order_use_case';
+import {Order} from '../../domain/entities/order';
+import {CreateOrderUseCase, Listeners} from '../../application/usecases/create_order_use_case';
+import {CreateOrderInput} from "../../domain/entities/create_order_input";
 
-const toDomain = (products: OrderProduct[]): OrderProduct[] => {
-  const orderProducts = products.map(product => {
-    return new OrderProduct(product.quantity, undefined, product.productId)
-  });
-  return orderProducts;
-}
 export class CreateOrderController {
   public constructor(private readonly createOrderUseCase: CreateOrderUseCase) { }
 
@@ -19,12 +13,7 @@ export class CreateOrderController {
       onInvalid: () => this.onInvalid(response),
     };
 
-    const { userId, products } = request.body as {
-      userId: number;
-      products: OrderProduct[]
-    };
-
-    return this.createOrderUseCase.execute(toDomain(products), listeners, userId);
+    return this.createOrderUseCase.execute(CreateOrderInput.toInput(request.body), listeners);
   }
 
   private onSuccess(order: Order, response: FastifyReply) {
