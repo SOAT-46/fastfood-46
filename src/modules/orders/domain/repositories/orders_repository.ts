@@ -7,6 +7,5 @@ export interface OrdersRepository {
 
   GetOrders(page: number, limit: number): Promise<PaginatedResponse<Order>>;
   GetById(id: number): Promise<Order | undefined>;
-
   Save(orderProducts: OrderProduct[], userId?: number): Promise<Order>;
 }

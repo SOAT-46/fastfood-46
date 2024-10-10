@@ -1,5 +1,5 @@
 import { Product } from "../models/product";
 
-export interface CreateProductPort {
+export interface UpdateProductPort {
   Execute(product: Product): Promise<Product>
 }

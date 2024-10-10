@@ -1,5 +1,5 @@
-import {Product} from '../../domain/models/product';
-import {ProductsRepository} from '../../domain/repositories/products_repository';
+import { Product } from '../../domain/models/product';
+import { UpdateProductPort, GetProductByIdPort } from 'modules/products/domain/gateways';
 
 export interface Listeners {
   onSuccess: (product: Product) => void;
@@ -7,15 +7,17 @@ export interface Listeners {
 }
 
 export class UpdateProductUseCase {
-  public constructor(private readonly productsRepository: ProductsRepository) {}
+  public constructor(
+    private readonly getProductByIdGateway: GetProductByIdPort,
+    private readonly updateProductGateway: UpdateProductPort) { }
 
   public async execute(product: Product, listeners: Listeners): Promise<void> {
-    const exists = await this.productsRepository.GetById(product.id!);
+    const exists = await this.getProductByIdGateway.Execute(product.id!);
     if (!exists) {
       return listeners.onNotFound(product.id);
     }
 
-    const updatedProduct = await this.productsRepository.Update(product);
+    const updatedProduct = await this.updateProductGateway.Execute(product);
     return listeners.onSuccess(updatedProduct);
   }
 }

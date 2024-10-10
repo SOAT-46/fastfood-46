@@ -1,6 +1,6 @@
 import { Order } from "../../domain/models/order";
-import { OrdersRepository } from "../../domain/repositories/orders_repository";
 import { PaginatedResponse } from "../../../shared/paginated_response";
+import { GetOrdersPort } from "modules/orders/domain/gateways/get_orders_port";
 
 export interface Listeners {
   onSuccess: (order: PaginatedResponse<Order>) => void;
@@ -8,15 +8,14 @@ export interface Listeners {
 }
 
 export class GetOrdersUseCase {
-  public constructor(private readonly ordersRepository: OrdersRepository) { }
+  public constructor(private readonly getOrdersPort: GetOrdersPort) { }
 
   public async Execute(page: number, limit: number, listeners: Listeners): Promise<void> {
-    const response = await this.ordersRepository.GetOrders(page, limit);
+    const response = await this.getOrdersPort.Execute(page, limit);
 
     if (response.IsEmpty()) {
       return listeners.onEmpty();
     }
-
     return listeners.onSuccess(response);
   }
 }

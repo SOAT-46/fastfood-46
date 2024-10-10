@@ -7,6 +7,15 @@ import {
   UpdateProductController
 } from '../adapters/http';
 
+import {
+  CreateProductGateway,
+  DeleteProductByIdGateway,
+  GetProductByIdGateway,
+  GetProductGateway,
+  GetProductsByCategoryGateway,
+  UpdateProductGateway
+} from '../adapters/gateways';
+
 import { PrismaProductsRepository } from '../adapters/repositories';
 
 import {
@@ -20,6 +29,13 @@ export const productsDIContainer = (container: AwilixContainer<any>) => {
   container.register({
 
     productsRepository: asClass(PrismaProductsRepository).singleton(),
+
+    createProductGateway: asClass(CreateProductGateway).singleton(),
+    getProductGateway: asClass(GetProductGateway).singleton(),
+    getProductByIdGateway: asClass(GetProductByIdGateway).singleton(),
+    deleteProductByIdGateway: asClass(DeleteProductByIdGateway).singleton(),
+    getProductsByCategoryGateway: asClass(GetProductsByCategoryGateway).singleton(),
+    updateProductGateway: asClass(UpdateProductGateway).singleton(),
 
     createProductUseCase: asClass(CreateProductUseCase).singleton(),
     updateProductUseCase: asClass(UpdateProductUseCase).singleton(),

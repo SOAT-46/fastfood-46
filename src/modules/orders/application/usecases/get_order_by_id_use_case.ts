@@ -1,6 +1,5 @@
-
-import { OrdersRepository } from "../../domain/repositories/orders_repository";
 import { Order } from "../../domain/models/order";
+import { GetOrderByIdPort } from "../../domain/gateways";
 
 export interface Listeners {
   onSuccess: (order: Order) => void;
@@ -8,15 +7,14 @@ export interface Listeners {
 }
 
 export class GetOrderByIdUseCase {
-  public constructor(private readonly ordersRepository: OrdersRepository) {}
+  public constructor(private readonly getOrderByIdPort: GetOrderByIdPort) {}
 
   public async Execute(orderId: number, listeners: Listeners): Promise<void> {
-    const response = await this.ordersRepository.GetById(orderId);
+    const response = await this.getOrderByIdPort.Execute(orderId);
 
     if (response === undefined) {
       return listeners.onEmpty();
     }
-
     return listeners.onSuccess(response);
   }
 }
