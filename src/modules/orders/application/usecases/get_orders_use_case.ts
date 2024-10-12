@@ -1,5 +1,5 @@
-import { Order } from "../../domain/models/order";
-import { PaginatedResponse } from "../../../shared/paginated_response";
+import { Order } from "../../domain/entities/order";
+import { PaginatedResponse } from "../../../shared";
 import { GetOrdersPort } from "modules/orders/domain/gateways/get_orders_port";
 
 export interface Listeners {

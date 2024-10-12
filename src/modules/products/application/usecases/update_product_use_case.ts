@@ -1,4 +1,4 @@
-import { Product } from '../../domain/models/product';
+import { Product } from '../../domain/models';
 import { UpdateProductPort, GetProductByIdPort } from 'modules/products/domain/gateways';
 
 export interface Listeners {

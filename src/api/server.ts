@@ -7,6 +7,7 @@ import { createDIContainer } from '../container';
 import { productRoutes } from '../modules/products/adapters/http/routes/products';
 import { orderRoutes } from '../modules/orders/adapters/http/routes/orders';
 import { UserRoutes } from '../modules/users/adapters/http/routes/users';
+
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
 import fastifyHealthcheck from 'fastify-healthcheck';

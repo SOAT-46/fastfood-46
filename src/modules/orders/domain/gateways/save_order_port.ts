@@ -1,6 +1,6 @@
-import { Order } from "../models/order";
-import { OrderProduct } from "../models/order_product";
+import { Order } from "../entities/order";
+import {CreateOrderInput} from "../entities/create_order_input";
 
 export interface SaveOrderPort {
-  Execute(products: OrderProduct[], userId?: number): Promise<Order | undefined>
+  Execute(input: CreateOrderInput): Promise<Order | undefined>
 }
