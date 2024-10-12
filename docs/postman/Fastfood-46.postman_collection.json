@@ -1,0 +1,1257 @@
+{
+	"info": {
+		"_postman_id": "8580a468-18ed-4cd6-a96d-837862998f3c",
+		"name": "Fastfood-46",
+		"description": "It provides endpoints for handling CRUD operations on users, managing product listings, organizing products into categories, and listing and processing orders.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5340204"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create a new Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Coca cola\",\r\n\t\"description\": \"Coca cola lata\",\r\n\t\"price\": 8.50,\r\n    \"categoryId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"products"
+							]
+						},
+						"description": "This endpoint creates a new product, or return the product if exists."
+					},
+					"response": [
+						{
+							"name": "New product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"Coca cola\",\r\n\t\"description\": \"Coca cola lata\",\r\n\t\"price\": 8.50,\r\n    \"categoryId\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/products",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "70"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 02:02:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"name\": \"Coca cola\",\n    \"description\": \"Coca cola lata\",\n    \"price\": 8.5\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/products",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "72"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 03:01:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"body must be object\"\n}"
+						},
+						{
+							"name": "Existent Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"Coca cola\",\r\n\t\"description\": \"Coca cola lata\",\r\n\t\"price\": 8.50,\r\n    \"categoryId\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/products",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "70"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 03:02:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"name\": \"Coca cola\",\n    \"description\": \"Coca cola lata\",\n    \"price\": 8.5\n}"
+						}
+					]
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Um delecioso lanche\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/products/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"products",
+								"1"
+							]
+						},
+						"description": "This endpoint updates a product"
+					},
+					"response": [
+						{
+							"name": "Update product",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Um delecioso lanche\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/products/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "70"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 02:37:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Misto\",\n    \"description\": \"Um delecioso lanche\",\n    \"price\": 10\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Um delecioso lanche\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/products/test",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"test"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "105"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 03:01:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"code\": \"FST_ERR_VALIDATION\",\n    \"error\": \"Bad Request\",\n    \"message\": \"params/id must be number\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all products by category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/products/category/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"products",
+								"category",
+								"1"
+							]
+						},
+						"description": "This endpoint list all products by the target category."
+					},
+					"response": [
+						{
+							"name": "Get all products by category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/products/category/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"category",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "135"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 01:31:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Misto\",\n            \"description\": \"Misto\",\n            \"price\": 10\n        }\n    ],\n    \"meta\": {\n        \"totalCount\": 1,\n        \"totalPages\": 1,\n        \"currentPage\": 1,\n        \"perPage\": 10\n    }\n}"
+						},
+						{
+							"name": "Products by the target category not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/products/category/10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"category",
+										"10"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 03:00:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"description": "This endpoint deals with product management, allowing for operations such as adding new products, updating product details and retrieving a list of products. It is primarily used to maintain the catalog of products available in the application."
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/orders?page=1&limit=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "This endpoint list all orders paginated."
+					},
+					"response": [
+						{
+							"name": "Get all orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/orders",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "207"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 02:42:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"number\": 1,\n            \"status\": \"PENDING\",\n            \"receivedAt\": \"2024-09-27T02:41:42.288Z\",\n            \"updatedAt\": \"2024-09-27T02:41:42.288Z\",\n            \"userId\": 0\n        }\n    ],\n    \"meta\": {\n        \"totalCount\": 1,\n        \"totalPages\": 1,\n        \"currentPage\": 1,\n        \"perPage\": 10\n    }\n}"
+						},
+						{
+							"name": "There are no orders to show",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/orders",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"orders"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 03:06:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/v1/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"orders"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "471"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Oct 2024 03:21:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 500,\n    \"error\": \"Internal Server Error\",\n    \"message\": \"Internal Server Error\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/orders?page=-1&limit=10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "-1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "74"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Oct 2024 03:36:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Page or Limit invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Creates a new Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": null,\r\n  \"products\": [\r\n    {\r\n      \"productId\": 1,\r\n      \"quantity\": 1\r\n    },\r\n    {\r\n      \"productId\": 2,\r\n      \"quantity\": 1\r\n    },\r\n    {\r\n      \"productId\": 3,\r\n      \"quantity\": 1\r\n    },\r\n    {\r\n      \"productId\": 4,\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/orders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"orders"
+							]
+						},
+						"description": "This endpoint creates a new Order."
+					},
+					"response": [
+						{
+							"name": "New order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userId\": null,\r\n  \"products\": [\r\n    {\r\n      \"productId\": 1,\r\n      \"quantity\": 1\r\n    },\r\n    {\r\n      \"productId\": 2,\r\n      \"quantity\": 1\r\n    },\r\n    {\r\n      \"productId\": 3,\r\n      \"quantity\": 1\r\n    },\r\n    {\r\n      \"productId\": 4,\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/orders",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"orders"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "128"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 02:44:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"number\": 2,\n    \"status\": \"PENDING\",\n    \"receivedAt\": \"2024-09-27T02:44:13.882Z\",\n    \"updatedAt\": \"2024-09-27T02:44:13.882Z\",\n    \"userId\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Get an order by the target id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"orders",
+								"1"
+							]
+						},
+						"description": "This endpoint gets an order by the target id."
+					},
+					"response": [
+						{
+							"name": "New Order",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/orders/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"orders",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "128"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 02:44:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"number\": 1,\n    \"status\": \"PENDING\",\n    \"receivedAt\": \"2024-09-27T02:41:42.288Z\",\n    \"updatedAt\": \"2024-09-27T02:41:42.288Z\",\n    \"userId\": 0\n}"
+						},
+						{
+							"name": "Order not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/orders/100",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"orders",
+										"100"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 03:03:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"description": "This endpoint manages order-related operations, such as placing new orders, and retrieving order details. It is used to facilitate order processing and tracking within the application."
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Creates a new User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"cpf\": \"444.555.888-00\",\r\n  \"email\": \"john.doe@outlook.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						},
+						"description": "This endpoint creates a new user."
+					},
+					"response": [
+						{
+							"name": "New User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"cpf\": \"444.555.888-00\",\r\n  \"email\": \"john.doe@outlook.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "73"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 02:47:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"John Doe\",\n    \"cpf\": \"444.555.888-00\",\n    \"email\": \"john.doe@outlook.com\"\n}"
+						},
+						{
+							"name": "Existent user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"cpf\": \"444.555.888-00\",\r\n  \"email\": \"john.doe@outlook.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "73"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 03:04:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"John Doe\",\n    \"cpf\": \"444.555.888-00\",\n    \"email\": \"john.doe@outlook.com\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "16"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 03:04:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Error\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User by CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/users/444.555.888-00",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"444.555.888-00"
+							]
+						},
+						"description": "This endpoint gets an user by the target CPF"
+					},
+					"response": [
+						{
+							"name": "Retrieved user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/v1/users/444.555.888-00",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"v1",
+										"users",
+										"444.555.888-00"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "24"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 02:47:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"cpf\": \"444.555.888-00\"\n}"
+						},
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/users/444.555.888-01",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"444.555.888-01"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Sep 2024 03:04:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"description": "This endpoint handles operations related to user management, such as creating and retrieving users. It serves as the primary interface for managing user information and user-specific data."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
