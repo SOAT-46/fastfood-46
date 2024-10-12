@@ -1,11 +1,11 @@
-import { FastifyInstance } from 'fastify';
-import { PrismaClient } from '@prisma/client';
-import { asValue, createContainer, InjectionMode } from 'awilix';
+import {FastifyInstance} from 'fastify';
+import {PrismaClient} from '@prisma/client';
+import {asValue, createContainer, InjectionMode} from 'awilix';
 
-import { categoriesDIContainer } from './modules/categories/infrastructure/container';
-import { ordersDIContainer } from './modules/orders/infrastructure/container';
-import { productsDIContainer } from './modules/products/infrastructure/container';
-import { usersDIContainer } from './modules/users/infrastructure/container';
+import {categoriesDIContainer} from './modules/categories/infrastructure/container';
+import {ordersDIContainer} from './modules/orders/infrastructure/container';
+import {productsDIContainer} from './modules/products/infrastructure/container';
+import {usersDIContainer} from './modules/users/infrastructure/container';
 
 export const createDIContainer = (server: FastifyInstance) => {
   const container = createContainer({

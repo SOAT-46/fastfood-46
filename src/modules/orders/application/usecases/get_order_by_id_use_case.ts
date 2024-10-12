@@ -1,5 +1,5 @@
-import { Order } from "../../domain/models/order";
-import { GetOrderByIdPort } from "../../domain/gateways";
+import {Order} from '../../domain/models/order';
+import {GetOrderByIdPort} from '../../domain/gateways';
 
 export interface Listeners {
   onSuccess: (order: Order) => void;

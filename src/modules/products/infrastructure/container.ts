@@ -1,4 +1,4 @@
-import { AwilixContainer, asClass } from 'awilix';
+import {AwilixContainer, asClass} from 'awilix';
 
 import {
   CreateProductController,
@@ -16,7 +16,7 @@ import {
   UpdateProductGateway
 } from '../adapters/gateways';
 
-import { PrismaProductsRepository } from '../adapters/repositories';
+import {PrismaProductsRepository} from '../adapters/repositories';
 
 import {
   CreateProductUseCase,

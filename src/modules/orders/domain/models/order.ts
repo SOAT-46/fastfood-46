@@ -1,4 +1,4 @@
-import { orderStatus } from "../enums/order_status";
+import {orderStatus} from '../enums/order_status';
 
 export class Order {
   constructor(

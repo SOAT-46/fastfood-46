@@ -1,4 +1,4 @@
-import { OrderStatus } from './order_status';
+import {OrderStatus} from './order_status';
 
 export interface PrismaOrder {
   id: number;

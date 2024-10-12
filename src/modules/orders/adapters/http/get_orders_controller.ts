@@ -1,8 +1,8 @@
-import { FastifyRequest, FastifyReply } from 'fastify';
-import { Params } from "./routes/parameters/types";
-import { Order } from '../../domain/models/order';
-import { GetOrdersUseCase, Listeners } from '../../application/usecases/get_orders_use_case';
-import { PaginatedResponse } from 'modules/shared/paginated_response';
+import {FastifyRequest, FastifyReply} from 'fastify';
+import {Params} from './routes/parameters/types';
+import {Order} from '../../domain/models/order';
+import {GetOrdersUseCase, Listeners} from '../../application/usecases/get_orders_use_case';
+import {PaginatedResponse} from 'modules/shared/paginated_response';
 
 export class GetOrdersController {
   public constructor(private readonly getOrdersUseCase: GetOrdersUseCase) { }
@@ -26,6 +26,6 @@ export class GetOrdersController {
   }
 
   private onBadRequest(response: FastifyReply) {
-    response.badRequest("Page or Limit invalid");
+    response.badRequest('Page or Limit invalid');
   }
 }

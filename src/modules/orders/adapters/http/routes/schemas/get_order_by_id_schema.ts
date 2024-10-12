@@ -1,5 +1,5 @@
-import { FastifySchema } from 'fastify';
-import { orderProperties } from "./types";
+import {FastifySchema} from 'fastify';
+import {orderProperties} from './types';
 
 export const getOrderByIdSchema: FastifySchema = {
   summary: 'Get order by the target id',
@@ -8,7 +8,7 @@ export const getOrderByIdSchema: FastifySchema = {
   params: {
     type: 'object',
     properties: {
-      id: { type: 'number' }
+      id: {type: 'number'}
     },
     required: ['id']
   },

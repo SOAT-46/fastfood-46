@@ -1,7 +1,7 @@
-import { SaveOrderPort } from "modules/orders/domain/gateways/save_order_port";
-import { Order } from "modules/orders/domain/models/order";
-import { OrderProduct } from "modules/orders/domain/models/order_product";
-import { OrdersRepository } from "modules/orders/domain/repositories/orders_repository";
+import {SaveOrderPort} from 'modules/orders/domain/gateways/save_order_port';
+import {Order} from 'modules/orders/domain/models/order';
+import {OrderProduct} from 'modules/orders/domain/models/order_product';
+import {OrdersRepository} from 'modules/orders/domain/repositories/orders_repository';
 
 export class SaveOrderGateway implements SaveOrderPort {
 

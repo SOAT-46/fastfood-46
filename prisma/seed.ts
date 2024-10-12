@@ -1,4 +1,4 @@
-import {Prisma, PrismaClient} from '@prisma/client'
+import {PrismaClient} from '@prisma/client'
 
 const client = new PrismaClient()
 
@@ -22,7 +22,7 @@ const seed = async () => {
   ];
   await client.categories.createMany({data: categories})
 
-  const products: Prisma.productsCreateManyInput[] = [
+  const products = [
     {name: 'Misto', description: 'Misto', price: 10, categoryId: 1},
     {name: 'Batata frita', description: 'Batata frita', price: 8, categoryId: 2},
     {name: 'Suco de laranja', description: 'Suco de laranja', price: 5, categoryId: 3},

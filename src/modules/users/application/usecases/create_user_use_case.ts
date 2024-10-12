@@ -1,5 +1,5 @@
-import { User } from '../../domain/models/user';
-import { CreateUserPort, GetUserPort } from '../../domain/gateways';
+import {User} from '../../domain/models/user';
+import {CreateUserPort, GetUserPort} from '../../domain/gateways';
 
 export interface Listeners {
   onSuccess: (user: User) => void;
