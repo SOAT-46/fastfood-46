@@ -15,8 +15,9 @@ export const UpdateOrderSchema: FastifySchema = {
   body: {
     type: 'object',
     properties: {
-      status: { type: 'string' },
+      status: { type: 'string', default: 'PENDING', nullable: false },
     },
+    required: ['status'],
   },
   response: {
     200: {
