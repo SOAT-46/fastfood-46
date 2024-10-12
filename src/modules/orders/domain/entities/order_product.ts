@@ -3,7 +3,7 @@ export class OrderProduct {
     public quantity: number,
     public orderId?: number,
     public productId?: number
-  ) {}
+  ) { }
 
   public isValid(): boolean {
     return (this.hasValidOrder() || this.hasValidProduct()) && this.hasValidQuantity();

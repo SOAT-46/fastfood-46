@@ -1,4 +1,4 @@
-export type OrderStatus =
+export type PrismaOrderStatus =
   | 'PENDING'
   | 'RECEIVED'
   | 'PREPARATION'

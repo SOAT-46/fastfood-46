@@ -1,4 +1,4 @@
-import { Order } from "../../domain/models/order";
+import { Order } from "../../domain/entities/order";
 import { GetOrderByIdPort } from "../../domain/gateways";
 
 export interface Listeners {
@@ -7,7 +7,7 @@ export interface Listeners {
 }
 
 export class GetOrderByIdUseCase {
-  public constructor(private readonly getOrderByIdGateway: GetOrderByIdPort) {}
+  public constructor(private readonly getOrderByIdGateway: GetOrderByIdPort) { }
 
   public async Execute(orderId: number, listeners: Listeners): Promise<void> {
     const response = await this.getOrderByIdGateway.Execute(orderId);

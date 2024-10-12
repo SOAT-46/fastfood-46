@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { Params } from "./routes/parameters/types";
-import { Order } from '../../domain/models/order';
+import { Order } from '../../domain/entities/order';
 import { GetOrderByIdUseCase, Listeners } from 'modules/orders/application/usecases/get_order_by_id_use_case';
 
 export class GetOrderByIdController {

@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { Params } from "./routes/parameters/types";
-import { Order } from '../../domain/models/order';
+import { Order } from '../../domain/entities/order';
 import { GetOrdersUseCase, Listeners } from '../../application/usecases/get_orders_use_case';
 import { PaginatedResponse } from 'modules/shared/paginated_response';
 
