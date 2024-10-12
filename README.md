@@ -8,7 +8,7 @@ For a complete understanding of the functionalities and how to interact with the
 
 1. **Open Postman.**
 2. **Import:** Click "Import" and select the collection file.
-3. **Locate:** Look for `Fastfood-46.postman_collection.json` in the `docs` folder.
+3. **Locate:** Look for `Fastfood-46.postman_collection.json` in the `docs/postman` folder.
 4. **Explore:** The collection will be available for you to test the endpoints.
 
 **By using Postman, you can:**
@@ -60,7 +60,7 @@ documentation can be found at http://localhost:3000/documentation.
 First, build your image, e.g.:
 
 ```shell
-docker build -t fastfood46 .
+docker build -t fastfood-46-server .
 ```
 
 If your cloud uses a different CPU architecture than your development
@@ -68,10 +68,10 @@ machine (e.g., you are on a Mac M1 and your cloud provider is amd64),
 you'll want to build the image for that platform, e.g.:
 
 ```shell
-docker build --platform=linux/amd64 -t fastfood46 .
+docker build --platform=linux/amd64 -t fastfood-46-server .
 ```
 
-Then, push it to your registry, e.g. `docker push myregistry.com/fastfood46`.
+Then, push it to your registry, e.g. `docker push myregistry.com/fastfood-46-server`.
 
 Consult Docker's [getting started](https://docs.docker.com/go/get-started-sharing/)
 docs for more detail on building and pushing.
@@ -86,9 +86,27 @@ docker compose up --build
 
 This command will build and start all the services defined in your docker-compose.yml file.
 
-### References
-* [Docker's Node.js guide](https://docs.docker.com/language/nodejs/)
+### Deploying your application to the Kubernetes
 
+To deploy the application to your Kubernetes cluster, follow these steps:
+
+Navigate to the `k8s/shared` directory and run the following command to set up shared resources:
+
+```bash
+make deploy
+```
+
+Navigate to the `k8s/database` directory and run the following command to deploy the database services:
+```bash
+make deploy
+```
+
+Finally, go to the `k8s/backend` directory and run the following command to deploy the backend application:
+```bash
+make deploy
+```
+
+By following these steps, your application and its components will be deployed to your Kubernetes environment efficiently.
 
 ### Execute stress test:
 
@@ -97,3 +115,6 @@ To execute the stress test, please, execute the command below:
 ```bash
 bash ./stress.sh 0.0001
 ```
+
+### References
+* [Docker's Node.js guide](https://docs.docker.com/language/nodejs/)
