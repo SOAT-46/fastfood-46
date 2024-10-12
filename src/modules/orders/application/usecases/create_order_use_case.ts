@@ -2,8 +2,6 @@ import { Order } from './../../domain/models/order';
 import { OrderProduct } from './../../domain/models/order_product';
 import { OrdersRepository } from './../../domain/repositories/orders_repository';
 
-import { CategoriesRepository } from "../../../categories/domain/repositories/categories_repository";
-
 export interface Listeners {
   onSuccess: (order: Order) => void;
   onInvalid: () => void;
@@ -12,7 +10,7 @@ export interface Listeners {
 export class CreateOrderUseCase {
   public constructor(
     private readonly ordersRepository: OrdersRepository
-  ) { }
+  ) {}
 
   public async execute(products: OrderProduct[], listeners: Listeners, userId?: number): Promise<void> {
     const allValid = products.every(orderProduct => orderProduct.isValid());

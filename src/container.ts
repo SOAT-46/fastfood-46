@@ -27,7 +27,6 @@ import {
 import {PrismaProductsRepository} from './modules/products/infrastructure/repositories/prisma_products_repository';
 import {PrismaCategoriesRepository} from './modules/categories/infrastructure/repositories/prisma_categories_repository';
 
-
 import { CreateUserUseCase } from './modules/users/application/usecases/create_user_use_case';
 import { GetUsersByCPFUseCase } from './modules/users/application/usecases/get_user_by_cpf_use_case';
 
@@ -36,18 +35,12 @@ import { CreateUserController, GetUsersByCPFController } from './modules/users/a
 import { PrismaUsersRepository } from './modules/users/infrastructure/repositories/prisma_users_repository';
 import { PrismaOrdersRepository } from './modules/orders/infrastructure/repositories/prisma_orders_repository';
 
-
-
-
-
-import {  } from './modules/orders/application/usecases/get_orders_use_case';
-
 export const createDIContainer = (server: FastifyInstance) => {
   const container = createContainer({
     injectionMode: InjectionMode.CLASSIC,
   });
 
-  const prisma = new PrismaClient();
+  const prisma = new PrismaClient({log: ['info', 'query']});
 
   container.register({
     prisma: asValue(prisma),

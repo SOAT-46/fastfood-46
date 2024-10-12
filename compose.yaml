@@ -10,8 +10,6 @@ services:
     networks:
       - application-network
     depends_on:
-      db:
-        condition: service_healthy
     deploy:
       resources:
         limits:
@@ -19,7 +17,7 @@ services:
           memory: '1GB'
   db:
     container_name: postgres
-    image: postgres
+    image: postgres:17.0-alpine3.20
     restart: always
     volumes:
       - db-data:/var/lib/postgresql/data
@@ -29,11 +27,6 @@ services:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
     networks:
       - application-network
-    healthcheck:
-      test: ["CMD", "pg_isready"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
     deploy:
       resources:
         limits:
