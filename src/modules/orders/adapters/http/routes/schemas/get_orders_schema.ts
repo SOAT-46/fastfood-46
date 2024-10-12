@@ -43,5 +43,10 @@ export const getOrdersSchema: FastifySchema = {
       description: 'There is no order to show',
       type: 'object'
     },
+    400: {
+      statusCode: { type: 'number', default: 400 },
+      "error": { type: 'string' },
+      "message": { type: 'string' },
+  }
   }
 };

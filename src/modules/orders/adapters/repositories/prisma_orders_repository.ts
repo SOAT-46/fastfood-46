@@ -11,14 +11,20 @@ export class PrismaOrdersRepository implements OrdersRepository {
   public async GetOrders(page: number, limit: number): Promise<PaginatedResponse<PrismaOrder>> {
     const skip = (page - 1) * limit;
 
-    const totalCount = await this.prisma.orders.count();
+    const [totalCount, orders] = await this.prisma.$transaction([
+      this.prisma.orders.count({ where: { status: { in: ['DELIVERED', 'PREPARATION', 'READY'] } } }),
+      this.prisma.orders.findMany({
+        skip,
+        take: limit,
+        include: { payment: true, user: true },
+        where: { status: { in: ['DELIVERED', 'PREPARATION', 'READY'] } },
+        orderBy: [
+          { status: 'desc' }, // Ready first, then Preparation, then Received
+          { receivedAt: 'asc' } // Older orders first
+        ],
+      }),
+    ]);
     const totalPages = Math.ceil(totalCount / limit);
-
-    const orders = await this.prisma.orders.findMany({
-      skip: skip,
-      take: limit,
-      include: { payment: true, user: true },
-    });
 
     const data = orders.map(order => PrismaOrder.fromDatabase(order));
     const meta = new Meta(totalCount, totalPages, page, limit);

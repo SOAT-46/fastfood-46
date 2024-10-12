@@ -14,7 +14,7 @@ export class GetOrdersController {
       onEmpty: () => this.onEmpty(response),
       onBadRequest: () => this.onBadRequest(response),
     }
-    return this.getOrdersUseCase.Execute(page, limit, listeners)
+    return this.getOrdersUseCase.Execute(page, limit, listeners);
   }
 
   private onSuccess(page: PaginatedResponse<Order>, response: FastifyReply) {
@@ -22,7 +22,7 @@ export class GetOrdersController {
   }
 
   private onEmpty(response: FastifyReply) {
-    response.code(204)
+    response.code(204);
   }
 
   private onBadRequest(response: FastifyReply) {
