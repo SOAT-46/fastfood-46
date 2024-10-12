@@ -14,7 +14,7 @@ export class GetProductsByCategoryController {
       onSuccess: (page) => this.onSuccess(page, response),
       onEmpty: () => this.onEmpty(response)
     }
-    return this.getProductsUseCase.Execute(id, page, limit, listeners)
+    return this.getProductsUseCase.execute(id, page, limit, listeners)
   }
 
   private onSuccess(page: PaginatedResponse<Product>, response: FastifyReply) {

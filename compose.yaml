@@ -10,13 +10,15 @@ services:
     networks:
       - application-network
     depends_on:
+      fastfood_database:
+        condition: service_healthy
     deploy:
       resources:
         limits:
           cpus: '1'
           memory: '1GB'
-  db:
-    container_name: postgres
+  fastfood_database:
+    container_name: fastfood_database
     image: postgres:17.0-alpine3.20
     restart: always
     volumes:

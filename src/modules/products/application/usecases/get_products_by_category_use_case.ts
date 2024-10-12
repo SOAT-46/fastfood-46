@@ -1,6 +1,6 @@
-import {Product} from "../../domain/models/product";
-import {ProductsRepository} from "../../domain/repositories/products_repository";
-import {PaginatedResponse} from "../../../shared/paginated_response";
+import { Product } from "../../domain/models/product";
+import { GetProductsByCategoryPort } from "../../domain/gateways";
+import { PaginatedResponse } from "../../../shared/paginated_response";
 
 export interface Listeners {
   onSuccess: (product: PaginatedResponse<Product>) => void;
@@ -8,16 +8,15 @@ export interface Listeners {
 }
 
 export class GetProductsByCategoryUseCase {
-  public constructor(private readonly productsRepository: ProductsRepository) {}
+  public constructor(private readonly getProductsByCategoryGateway: GetProductsByCategoryPort) { }
 
-  public async Execute(categoryId: number, page: number, limit: number, listeners: Listeners): Promise<void> {
-    const response = await this.productsRepository.GetProductsByCategoryId(
+  public async execute(categoryId: number, page: number, limit: number, listeners: Listeners): Promise<void> {
+    const response = await this.getProductsByCategoryGateway.Execute(
       categoryId, page, limit);
 
     if (response.IsEmpty()) {
       return listeners.onEmpty();
     }
-
     return listeners.onSuccess(response);
   }
 }
