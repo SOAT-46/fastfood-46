@@ -1,4 +1,8 @@
-## Fastfood-46
+# Fastfood-46
+
+## System Architecture Design
+![System Architecture Design](./docs/img/fastfood-46.jpg)
+(source: 8SOAT Team 46)
 
 ## Documentation
 
@@ -8,7 +12,7 @@ For a complete understanding of the functionalities and how to interact with the
 
 1. **Open Postman.**
 2. **Import:** Click "Import" and select the collection file.
-3. **Locate:** Look for `Fastfood-46.postman_collection.json` in the `docs/postman` folder.
+3. **Locate:** Look for [`Fastfood-46.postman_collection.json`](https://github.com/SOAT-46/fastfood-46/blob/main/docs/postman/Fastfood-46.postman_collection.json) in the `docs` folder.
 4. **Explore:** The collection will be available for you to test the endpoints.
 
 **By using Postman, you can:**
@@ -19,6 +23,12 @@ For a complete understanding of the functionalities and how to interact with the
 * **Share:** Share your collections with other developers.
 
 **With Postman, exploring and testing your API becomes more efficient and intuitive.**
+
+**Suggested API sequence to execution**
+- POST - v1/orders
+- GET - v1/orders/{id}
+- PATCH - v1/orders/{id}
+- GET - v1/orders
 
 ### Setting up Node Version
 
