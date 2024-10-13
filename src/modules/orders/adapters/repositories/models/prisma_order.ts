@@ -18,7 +18,7 @@ export class PrismaOrder {
     return PrismaOrderBuilder.fromDatabase(db);
   }
 
-  public toDomain(): Order {
+  public toDomain(qrCode: string = ''): Order {
     return new Order(
       this.id,
       this.number,
@@ -26,6 +26,7 @@ export class PrismaOrder {
       this.receivedAt,
       this.updatedAt,
       this.payment?.status!,
+      qrCode,
       this.userId
     )
   }

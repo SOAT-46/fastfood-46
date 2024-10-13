@@ -46,8 +46,8 @@ export class PrismaOrdersRepository implements OrdersRepository {
       product: { connect: { id: product.productId as number } },
       quantity: product.quantity,
     }));
-
     const value = await this.getTotalValue(orderProducts);
+
     const order: Prisma.ordersCreateArgs = {
       data: {
         number: nextOrder,
@@ -65,6 +65,7 @@ export class PrismaOrdersRepository implements OrdersRepository {
     };
 
     const resp = await this.prisma.orders.create(order);
+
     return PrismaOrder.fromDatabase(resp);
   }
 

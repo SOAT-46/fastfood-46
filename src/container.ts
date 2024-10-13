@@ -6,6 +6,7 @@ import { categoriesDIContainer } from './modules/categories/infrastructure/conta
 import { ordersDIContainer } from './modules/orders/infrastructure/container';
 import { productsDIContainer } from './modules/products/infrastructure/container';
 import { usersDIContainer } from './modules/users/infrastructure/container';
+import { paymentsDIContainer } from './modules/payments/infrastructure/container';
 
 export const createDIContainer = (server: FastifyInstance) => {
   const container = createContainer({
@@ -21,6 +22,7 @@ export const createDIContainer = (server: FastifyInstance) => {
   categoriesDIContainer(container);
   ordersDIContainer(container);
   productsDIContainer(container);
+  paymentsDIContainer(container);
   usersDIContainer(container);
 
   server.decorate('diContainer', container);

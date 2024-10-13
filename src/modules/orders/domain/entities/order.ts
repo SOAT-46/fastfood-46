@@ -9,6 +9,7 @@ export class Order {
     public receivedAt: Date,
     public updatedAt: Date,
     public payment: string,
+    public qrCode?: string,
     public userId?: number | null
   ) { }
 

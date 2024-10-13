@@ -7,6 +7,7 @@ import { createDIContainer } from '../container';
 import { productRoutes } from '../modules/products/adapters/http/routes/products';
 import { orderRoutes } from '../modules/orders/adapters/http/routes/orders';
 import { UserRoutes } from '../modules/users/adapters/http/routes/users';
+import { paymentsRoutes } from '../modules/payments/adapters/http/routes/payments';
 
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
@@ -25,7 +26,7 @@ const buildServer = () => {
         description: 'FIAP fastfood-46',
         version: '0.0.1'
       },
-      servers: [{ url: 'http://localhost:3000' }],
+      servers: [{ url: process.env.APP_DOMAIN as string }],
     },
     hideUntagged: true,
   });
@@ -46,6 +47,7 @@ const buildServer = () => {
   server.register(productRoutes, {prefix: '/v1/products'});
   server.register(orderRoutes, {prefix: '/v1/orders'});
   server.register(UserRoutes, {prefix: '/v1/users'});
+  server.register(paymentsRoutes, {prefix: '/v1/payments'});
   server.register(fastifyHealthcheck);
   return server;
 }

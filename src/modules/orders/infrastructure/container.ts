@@ -22,6 +22,7 @@ import {
  } from '../adapters/gateways';
 
 import { PrismaOrdersRepository } from '../adapters/repositories';
+import { Service } from '../adapters/services/service';
 
 export const ordersDIContainer = (container: AwilixContainer<any>) => {
   container.register({
@@ -41,5 +42,7 @@ export const ordersDIContainer = (container: AwilixContainer<any>) => {
     getOrderByIdController: asClass(GetOrderByIdController).singleton(),
     createOrderController: asClass(CreateOrderController).singleton(),
     updateOrderController: asClass(UpdateOrderController).singleton(),
+
+    service: asClass(Service).singleton(),
   });
 };

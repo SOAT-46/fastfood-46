@@ -10,8 +10,7 @@ services:
     networks:
       - application-network
     depends_on:
-      fastfood_database:
-        condition: service_healthy
+      - fastfood_database
     deploy:
       resources:
         limits:
