@@ -22,7 +22,7 @@ import {
  } from '../adapters/gateways';
 
 import { PrismaOrdersRepository } from '../adapters/repositories';
-import { Service } from '../adapters/services/service';
+import { GenerateQRCodeService } from '../adapters/services/generate_qrcode_service';
 
 export const ordersDIContainer = (container: AwilixContainer<any>) => {
   container.register({
@@ -43,6 +43,6 @@ export const ordersDIContainer = (container: AwilixContainer<any>) => {
     createOrderController: asClass(CreateOrderController).singleton(),
     updateOrderController: asClass(UpdateOrderController).singleton(),
 
-    service: asClass(Service).singleton(),
+    generateQrCodeService: asClass(GenerateQRCodeService).singleton(),
   });
 };
