@@ -1,7 +1,7 @@
-import { Order } from "../../../domain/entities/order";
+import { Order } from "../../../domain/entities";
 import { OrderStatus } from "../../../domain/entities/enums";
 import { PrismaOrderStatus } from './order_status';
-import { PrismaPayment, PrismaPaymentBuilder } from './prisma_payment';
+import { PrismaPayment, PrismaPaymentBuilder } from '../../../../payments/adapters/repositories/models/prisma_payment';
 
 export class PrismaOrder {
   public constructor(

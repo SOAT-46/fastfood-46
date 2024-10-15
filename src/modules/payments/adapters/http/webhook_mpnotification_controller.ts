@@ -1,23 +1,23 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-// import { Params, UpdateOrderRequest } from "./routes/parameters/types";
-// import { UpdateOrderUseCase, Listeners } from "modules/orders/application/usecases/update_order_use_case";
+import {
+  UpdatePaymentUseCase,
+  Listeners } from '../../application/usecases/update_payment_use_case';
+import { mapToDomain } from './mappers/mp_notification_mapper'
 
 export class WebhookMpNotificationController {
   public constructor(
-    // private readonly updateOrderUseCase: UpdateOrderUseCase
+    private readonly updateOrderUseCase: UpdatePaymentUseCase
   ) { }
 
   public async execute(
-    // request: FastifyRequest<{Params: Params; Body: UpdateOrderRequest}>,
     request: FastifyRequest<{Params: any; Body: any}>,
     response: FastifyReply): Promise<void> {
-    // const listeners: Listeners = {
-    //   onSuccess: () => this.onSuccess(response),
-    //   onNotFound: () => this.onNotFound(response),
-    //   onError: () => this.onError(response)
-    // }
-    // return this.updateOrderUseCase.Execute(OrderMapper.toDomain(request), null);
-    console.log(request);
+    const listeners: Listeners = {
+      onSuccess: () => this.onSuccess(response),
+      onNotFound: () => this.onNotFound(response),
+      onError: () => this.onError(response)
+    }
+    return this.updateOrderUseCase.Execute(mapToDomain(request.body), listeners);
   }
 
 
@@ -26,10 +26,10 @@ export class WebhookMpNotificationController {
   }
 
   private onNotFound(response: FastifyReply) {
-    response.notFound(`The order does not exist`);
+    response.notFound(`The payment does not exist`);
   }
 
   private onError(response: FastifyReply) {
-    response.internalServerError("An error occurred while updating the order");
+    response.internalServerError("An error occurred while updating the payment");
   }
 }

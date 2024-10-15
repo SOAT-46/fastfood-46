@@ -1,5 +1,4 @@
 import { OrderStatus } from "./enums";
-import { Payment } from "./payment";
 
 export class Order {
   constructor(

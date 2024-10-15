@@ -1,5 +1,6 @@
-import { UpdatePaymentPort } from './../../domain/gateways/update_payment_port';
-import { WebhookMpNotificationPort } from './../../domain/gateways/webhook_mpnotification_port';
+import { UpdatePaymentPort } from '../../domain/gateways/update_payment_port';
+import { WebhookMpNotificationPort } from '../../domain/gateways/webhook_mpnotification_port';
+import { Notification } from '../../domain/models';
 
 export interface Listeners {
   onSuccess: () => void;
@@ -7,21 +8,18 @@ export interface Listeners {
   onError: () => void;
 }
 
-export class UpdateOrderUseCase {
+export class UpdatePaymentUseCase {
   public constructor(
     private readonly getPaymentByIdGateway: WebhookMpNotificationPort,
-    private readonly updateOrderGateway: UpdatePaymentPort,
+    private readonly updatePaymentGateway: UpdatePaymentPort,
   ) {}
 
-  public async Execute(notification: any, listeners: Listeners): Promise<void> {
-    // const found = await this.getPaymentByIdGateway.Execute(order.id);
-    // if (!found) {
-    //   return listeners.onNotFound();
-    // }
-    // const updated = await this.updateOrderGateway.Execute(order);
-    // if (updated) {
-    //   return listeners.onSuccess(updated);
-    // }
-    // return listeners.onError();
+  public async Execute(notification: Notification, listeners: Listeners): Promise<void> {
+    const payment = await this.getPaymentByIdGateway.Execute(notification);
+    if (!payment) {
+      return listeners.onNotFound();
+    }
+    await this.updatePaymentGateway.Execute(payment);
+    return listeners.onSuccess();
   }
 }

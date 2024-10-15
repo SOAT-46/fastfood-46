@@ -1,4 +1,6 @@
+import {Payment} from "../../../domain/models";
+
 export interface PaymentsRepository {
 
-  Update(id: number): Promise<void>
+  Update(payment: Payment): Promise<void>
 }

@@ -1,3 +1,5 @@
+import { Payment } from '../models';
+
 export interface UpdatePaymentPort {
-  Execute(notification: any): Promise<void>;
+  Execute(payment: Payment): Promise<void>;
 }

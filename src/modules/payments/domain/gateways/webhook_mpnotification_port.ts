@@ -1,4 +1,6 @@
+import { Payment, Notification } from '../models';
+
 export interface WebhookMpNotificationPort {
 
-  Execute(id: number) : Promise<void>
+  Execute(notification: Notification) : Promise<Payment | undefined>
 }
