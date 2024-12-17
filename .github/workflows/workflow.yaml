@@ -1,0 +1,56 @@
+name: Build Image to Deploy in ECR
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: soat_46/fastfood
+  CONTAINER_NAME: fastfood-api
+
+jobs:
+  build:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: production # TODO: Change the env name to AWS and migrate the env variables
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        id: aws
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build and Tag Docker Image
+        id: build-image
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
+          ECR_URL=$AWS_ACCOUNT_ID.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}
+          docker build -t $ECR_URL:latest .
+          docker tag $ECR_URL:latest $ECR_URL:${{ github.sha }}
+
+      - name: Push Docker Image to Amazon ECR
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        id: push-image
+        run: |
+          AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
+          ECR_URL=$AWS_ACCOUNT_ID.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}
+          docker push $ECR_URL:latest
+          docker push $ECR_URL:${{ github.sha }}
