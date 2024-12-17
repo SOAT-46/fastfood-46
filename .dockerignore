@@ -20,5 +20,10 @@
 **/obj
 **/secrets.dev.yaml
 **/values.dev.yaml
+**/.github
+**/docs
+**/k8s
+**/.editorconfig
 LICENSE
 README.md
+stress.sh
