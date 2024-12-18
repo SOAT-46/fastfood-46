@@ -20,15 +20,15 @@ spec:
     spec:
       containers:
       - name: fastfood-api
-        image: kalilventura/fastfood-46-server:2.0.0
+        image: 830543321077.dkr.ecr.us-east-1.amazonaws.com/soat_46/fastfood:latest
         imagePullPolicy: Always
         resources:
           limits:
-            memory: "2Gi"
-            cpu: "1000m"
+            memory: 2Gi
+            cpu: 1000m
           requests:
-            memory: "500m"
-            cpu: "50m"
+            memory: "500"
+            cpu: 50m
         ports:
         - containerPort: 3000
         envFrom:

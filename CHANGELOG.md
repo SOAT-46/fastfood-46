@@ -18,3 +18,7 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 ### Added
 
 - added GitHub Actions workflow for CI/CD
+
+### Changed
+
+- changed the backend `service` from `NodePort` to `LoadBalancer`
