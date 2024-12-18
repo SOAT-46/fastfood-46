@@ -23,7 +23,7 @@ const buildServer = () => {
       info: {
         title: 'fastfood-46',
         description: 'FIAP fastfood-46',
-        version: '0.0.1'
+        version: '1.0.0'
       },
       servers: [{ url: 'http://localhost:3000' }],
     },
@@ -33,7 +33,7 @@ const buildServer = () => {
     routePrefix: '/documentation',
     uiConfig: {
       docExpansion: 'list',
-      deepLinking: false
+      deepLinking: true
     },
     staticCSP: true,
     transformSpecification: (swaggerObject, request, reply) => {

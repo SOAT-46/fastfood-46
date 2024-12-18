@@ -6,12 +6,12 @@ metadata:
     app: fastfood-api
     tier: backend
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: fastfood-api
     tier: backend
   ports:
-  - protocol: TCP
-    port: 3000 # Service port (exposed to the app)
+  - name: http
+    protocol: TCP
+    port: 80 # Service port (exposed to the app)
     targetPort: 3000 # Container port (API port inside the pod)
-    nodePort: 30163
