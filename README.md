@@ -128,3 +128,15 @@ bash ./stress.sh 0.0001
 
 ### References
 * [Docker's Node.js guide](https://docs.docker.com/language/nodejs/)
+
+
+### Database
+
+![System Architecture Design](./docs/img/modelagem_fastfood-46.png)
+
+PostgreSQL
+
+![System Architecture Design](./docs/img/postgreSQL_img.png)
+
+
+The bank was chosen because it is reliable, open source, scalable, a good ecosystem, and free, making it a good choice for the project. 
