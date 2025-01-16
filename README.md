@@ -139,4 +139,4 @@ PostgreSQL
 ![System Architecture Design](./docs/img/postgreSQL_img.png)
 
 
-The bank was chosen because it is reliable, open source, scalable, a good ecosystem, and free, making it a good choice for the project. 
+The bank was chosen because it is reliable, open source, scalable, a good ecosystem, and free, making it a good choice for the project. teste
